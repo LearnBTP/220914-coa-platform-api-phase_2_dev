@@ -1,0 +1,22 @@
+VIEW "V_SIMULATION" AS (
+    SELECT 
+    Simulation_name,
+    From_GHSite,
+    Program,
+        MAX(TO_GHSITE) AS To_GHSite,
+        MAX(CM) AS CM,
+        MAX(SITE) AS Site,
+        MAX(LINE_TYPE) AS Line_Type,
+        MAX(TO_CM)  AS To_CM,
+        MAX(TO_SITE) AS To_Site,
+        MAX(TO_PROGRAM) AS To_Program,
+        MAX(TO_BUSINESS_GRP) AS To_Business_Grp,
+        MAX(CREATEDAT) AS createdAt,
+        MAX(CREATEDBY) AS createdBy,
+        MAX(MODIFIEDAT) AS modifiedAt,
+        MAX(MODIFIEDBY) AS modifiedBy,    
+        STRING_AGG(LINE_ID,',') as Line_ID
+        from "COM_APPLE_COA_T_COA_SIMULATION_H"
+        group by 	Simulation_name,
+        From_GHSite,
+        Program)

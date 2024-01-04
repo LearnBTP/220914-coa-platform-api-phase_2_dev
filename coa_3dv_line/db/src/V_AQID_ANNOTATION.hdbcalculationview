@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="V_AQID_ANNOTATION" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="V_AQID_ANNOTATION"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="COM_APPLE_COA_T_COA_RFID_ANNOTATION">
+    <resourceUri>COM_APPLE_COA_T_COA_RFID_ANNOTATION</resourceUri>
+  </DataSource>
+  <DataSource id="V_ALDERAAN_DATA">
+    <resourceUri>V_ALDERAAN_DATA</resourceUri>
+  </DataSource>
+  <DataSource id="COM_APPLE_COA_T_COA_3DV_HEADER">
+    <resourceUri>COM_APPLE_COA_T_COA_3DV_HEADER</resourceUri>
+  </DataSource>
+  <DataSource id="COM_APPLE_COA_T_COA_SHAPES">
+    <resourceUri>COM_APPLE_COA_T_COA_SHAPES</resourceUri>
+  </DataSource>
+  <DataSource id="COM_APPLE_COA_T_COA_AQID_MAIN">
+    <resourceUri>COM_APPLE_COA_T_COA_AQID_MAIN</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="RFID_EQUI" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="BUILDING"/>
+      <viewAttribute id="FLOOR"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="UPH"/>
+      <viewAttribute id="LINETYPE"/>
+      <viewAttribute id="LINEID"/>
+      <viewAttribute id="RFID"/>
+      <viewAttribute id="COMMENTS"/>
+      <viewAttribute id="SHAPE_GUID"/>
+      <viewAttribute id="RFID_XAXIS"/>
+      <viewAttribute id="CARRYOVEREQNAME"/>
+      <viewAttribute id="RFID_YAXIS"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="ISPROGRAMCHANGED"/>
+      <viewAttribute id="CARRYOVEROLDPROGRAM"/>
+      <viewAttribute id="OVERRIDE_LINEID"/>
+      <viewAttribute id="ISAQIDCHANGED"/>
+      <viewAttribute id="CARRYOVERAQID"/>
+      <viewAttribute id="ZZVMODEL"/>
+      <viewAttribute id="EQUNR"/>
+      <viewAttribute id="ZALDR_SITE"/>
+      <viewAttribute id="SERNR"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="EQUIP_CM"/>
+      <viewAttribute id="EQUIP_SITE"/>
+      <viewAttribute id="EQUIP_STATUS"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+      <viewAttribute id="ASSET_ID"/>
+      <viewAttribute id="LINE_PRIORITY"/>
+      <viewAttribute id="MODIFIEDAT"/>
+      <viewAttribute id="CM_DEPT"/>
+      <viewAttribute hidden="true" id="JOIN$ASSET_ID$ASSET_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="COM_APPLE_COA_T_COA_RFID_ANNOTATION">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BUILDING" source="BUILDING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FLOOR" source="FLOOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UPH" source="UPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LINETYPE" source="LINETYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LINEID" source="LINEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID" source="RFID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMMENTS" source="COMMENTS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHAPE_GUID" source="SHAPE_GUID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID_XAXIS" source="RFID_XAXIS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVEREQNAME" source="CARRYOVEREQNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID_YAXIS" source="RFID_YAXIS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ISPROGRAMCHANGED" source="ISPROGRAMCHANGED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVEROLDPROGRAM" source="CARRYOVEROLDPROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OVERRIDE_LINEID" source="OVERRIDE_LINEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ISAQIDCHANGED" source="ISAQIDCHANGED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVERAQID" source="CARRYOVERAQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CM_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIP_CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIP_SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSET_ID" source="ASSET_ID"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="LINE_PRIORITY" source="LINE_PRIORITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDAT" source="MODIFIEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ASSET_ID$ASSET_ID" source="ASSET_ID"/>
+    </input>
+    <input node="V_ALDERAAN_DATA">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZVMODEL" source="MODEL_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZALDR_SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUNR" source="SAP_EQ_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SERNR" source="SERIAL_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="APPLE_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIP_STATUS" source="ASSET_STATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="CM_PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM_DEPT" source="CM_DEPT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ASSET_ID$ASSET_ID" source="ASSET_ID"/>
+    </input>
+    <joinAttribute name="JOIN$ASSET_ID$ASSET_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="AQID_ANNOTATION_DETAIL" cardinality="C1_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="BUILDING"/>
+      <viewAttribute id="FLOOR"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="UPH"/>
+      <viewAttribute id="LINETYPE"/>
+      <viewAttribute id="LINEID"/>
+      <viewAttribute id="RFID"/>
+      <viewAttribute id="COMMENTS"/>
+      <viewAttribute id="SHAPE_GUID"/>
+      <viewAttribute id="RFID_XAXIS"/>
+      <viewAttribute id="CARRYOVEREQNAME"/>
+      <viewAttribute id="RFID_YAXIS"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="ISPROGRAMCHANGED"/>
+      <viewAttribute id="OVERRIDE_LINEID"/>
+      <viewAttribute id="ISAQIDCHANGED"/>
+      <viewAttribute id="ZZVMODEL"/>
+      <viewAttribute id="EQUNR"/>
+      <viewAttribute id="ZALDR_SITE"/>
+      <viewAttribute id="SERNR"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="EQUIP_CM"/>
+      <viewAttribute id="EQUIP_SITE"/>
+      <viewAttribute id="EQUIP_STATUS"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="CARRYOVEROLDPROGRAM"/>
+      <viewAttribute id="CARRYOVERAQID"/>
+      <viewAttribute id="SCAN_END_DATE"/>
+      <viewAttribute id="ALDERAAN_SITE"/>
+      <viewAttribute id="ALDERAAN_CM"/>
+      <viewAttribute id="SCAN_START_DATE"/>
+    
+      <viewAttribute id="SAP_CM_SITE"/>
+    
+      <viewAttribute id="ASSET_ID"/>
+    
+      <viewAttribute id="LINE_PRIORITY"/>
+      <viewAttribute id="MODIFIEDAT"/>
+      <viewAttribute id="CM_DEPT"/>
+      <viewAttribute hidden="true" id="JOIN$BUILDING$BUILDING"/>
+      <viewAttribute hidden="true" id="JOIN$FLOOR$FLOOR"/>
+      <viewAttribute hidden="true" id="JOIN$SITE$SITE"/>
+      <viewAttribute hidden="true" id="JOIN$CM$CM"/>
+      <viewAttribute hidden="true" id="JOIN$STATUS$STATUS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="RFID_EQUI">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BUILDING" source="BUILDING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FLOOR" source="FLOOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UPH" source="UPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LINETYPE" source="LINETYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LINEID" source="LINEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID" source="RFID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMMENTS" source="COMMENTS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHAPE_GUID" source="SHAPE_GUID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID_XAXIS" source="RFID_XAXIS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVEREQNAME" source="CARRYOVEREQNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID_YAXIS" source="RFID_YAXIS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ISPROGRAMCHANGED" source="ISPROGRAMCHANGED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OVERRIDE_LINEID" source="OVERRIDE_LINEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ISAQIDCHANGED" source="ISAQIDCHANGED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZVMODEL" source="ZZVMODEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUNR" source="EQUNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZALDR_SITE" source="ZALDR_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SERNR" source="SERNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIP_CM" source="EQUIP_CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIP_SITE" source="EQUIP_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIP_STATUS" source="EQUIP_STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVEROLDPROGRAM" source="CARRYOVEROLDPROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVERAQID" source="CARRYOVERAQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSET_ID" source="ASSET_ID"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="LINE_PRIORITY" source="LINE_PRIORITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDAT" source="MODIFIEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM_DEPT" source="CM_DEPT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CM_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$BUILDING$BUILDING" source="BUILDING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$FLOOR$FLOOR" source="FLOOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STATUS$STATUS" source="STATUS"/>
+    </input>
+    <input node="COM_APPLE_COA_T_COA_3DV_HEADER">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SCAN_END_DATE" source="SCAN_END_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ALDERAAN_SITE" source="ALDERAAN_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ALDERAAN_CM" source="ALDERAAN_CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SCAN_START_DATE" source="SCAN_START_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$BUILDING$BUILDING" source="BUILDING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$FLOOR$FLOOR" source="FLOOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STATUS$STATUS" source="STATUS"/>
+    </input>
+    <joinAttribute name="JOIN$BUILDING$BUILDING"/>
+    <joinAttribute name="JOIN$FLOOR$FLOOR"/>
+    <joinAttribute name="JOIN$SITE$SITE"/>
+    <joinAttribute name="JOIN$CM$CM"/>
+    <joinAttribute name="JOIN$STATUS$STATUS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="BUILDING"/>
+      <viewAttribute id="FLOOR"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="UPH"/>
+      <viewAttribute id="LINETYPE"/>
+      <viewAttribute id="LINEID"/>
+      <viewAttribute id="RFID"/>
+      <viewAttribute id="COMMENTS"/>
+      <viewAttribute id="SHAPE_GUID"/>
+      <viewAttribute id="RFID_XAXIS"/>
+      <viewAttribute id="CARRYOVEREQNAME"/>
+      <viewAttribute id="RFID_YAXIS"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="ISPROGRAMCHANGED"/>
+      <viewAttribute id="OVERRIDE_LINEID"/>
+      <viewAttribute id="ISAQIDCHANGED"/>
+      <viewAttribute id="ZZVMODEL"/>
+      <viewAttribute id="EQUNR"/>
+      <viewAttribute id="ZALDR_SITE"/>
+      <viewAttribute id="SERNR"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="EQUIP_CM"/>
+      <viewAttribute id="EQUIP_SITE"/>
+      <viewAttribute id="EQUIP_STATUS"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="CARRYOVEROLDPROGRAM"/>
+      <viewAttribute id="CARRYOVERAQID"/>
+      <viewAttribute id="SCAN_END_DATE"/>
+      <viewAttribute id="ALDERAAN_SITE"/>
+      <viewAttribute id="ALDERAAN_CM"/>
+      <viewAttribute id="SCAN_START_DATE"/>
+      <viewAttribute id="SHAPE_COLOR"/>
+    
+      <viewAttribute id="SAP_CM_SITE"/>
+    
+      <viewAttribute id="ASSET_ID"/>
+    
+      <viewAttribute id="LINE_PRIORITY"/>
+      <viewAttribute id="MODIFIEDAT"/>
+      <viewAttribute id="CM_DEPT"/>
+      <viewAttribute hidden="true" id="JOIN$BUILDING$BUILDING"/>
+      <viewAttribute hidden="true" id="JOIN$FLOOR$FLOOR"/>
+      <viewAttribute hidden="true" id="JOIN$SITE$SITE"/>
+      <viewAttribute hidden="true" id="JOIN$CM$CM"/>
+      <viewAttribute hidden="true" id="JOIN$SHAPE_GUID$SHAPE_GUID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="AQID_ANNOTATION_DETAIL">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BUILDING" source="BUILDING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FLOOR" source="FLOOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UPH" source="UPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LINETYPE" source="LINETYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LINEID" source="LINEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID" source="RFID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMMENTS" source="COMMENTS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHAPE_GUID" source="SHAPE_GUID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID_XAXIS" source="RFID_XAXIS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVEREQNAME" source="CARRYOVEREQNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID_YAXIS" source="RFID_YAXIS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ISPROGRAMCHANGED" source="ISPROGRAMCHANGED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OVERRIDE_LINEID" source="OVERRIDE_LINEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ISAQIDCHANGED" source="ISAQIDCHANGED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZVMODEL" source="ZZVMODEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUNR" source="EQUNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZALDR_SITE" source="ZALDR_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SERNR" source="SERNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIP_CM" source="EQUIP_CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIP_SITE" source="EQUIP_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIP_STATUS" source="EQUIP_STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVEROLDPROGRAM" source="CARRYOVEROLDPROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVERAQID" source="CARRYOVERAQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SCAN_END_DATE" source="SCAN_END_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ALDERAAN_SITE" source="ALDERAAN_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ALDERAAN_CM" source="ALDERAAN_CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SCAN_START_DATE" source="SCAN_START_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSET_ID" source="ASSET_ID"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="LINE_PRIORITY" source="LINE_PRIORITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDAT" source="MODIFIEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM_DEPT" source="CM_DEPT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CM_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$BUILDING$BUILDING" source="BUILDING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$FLOOR$FLOOR" source="FLOOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SHAPE_GUID$SHAPE_GUID" source="SHAPE_GUID"/>
+    </input>
+    <input node="COM_APPLE_COA_T_COA_SHAPES">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHAPE_COLOR" source="SHAPE_COLOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$BUILDING$BUILDING" source="BUILDING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$FLOOR$FLOOR" source="FLOOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SHAPE_GUID$SHAPE_GUID" source="SHAPE_GUID"/>
+    </input>
+    <joinAttribute name="JOIN$BUILDING$BUILDING"/>
+    <joinAttribute name="JOIN$FLOOR$FLOOR"/>
+    <joinAttribute name="JOIN$SITE$SITE"/>
+    <joinAttribute name="JOIN$CM$CM"/>
+    <joinAttribute name="JOIN$SHAPE_GUID$SHAPE_GUID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="C1_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="BUILDING"/>
+      <viewAttribute id="FLOOR"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="UPH"/>
+      <viewAttribute id="LINETYPE"/>
+      <viewAttribute id="LINEID"/>
+      <viewAttribute id="RFID"/>
+      <viewAttribute id="COMMENTS"/>
+      <viewAttribute id="SHAPE_GUID"/>
+      <viewAttribute id="RFID_XAXIS"/>
+      <viewAttribute id="CARRYOVEREQNAME"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="CARRYOVEROLDPROGRAM"/>
+      <viewAttribute id="CARRYOVERAQID"/>
+      <viewAttribute id="RFID_YAXIS"/>
+      <viewAttribute id="ZZVMODEL"/>
+      <viewAttribute id="ZALDR_SITE"/>
+      <viewAttribute id="SERNR"/>
+      <viewAttribute id="OVERRIDE_LINEID"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="EQUIP_CM"/>
+      <viewAttribute id="EQUIP_SITE"/>
+      <viewAttribute id="EQUIP_STATUS"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="SCAN_END_DATE"/>
+      <viewAttribute id="ALDERAAN_SITE"/>
+      <viewAttribute id="ALDERAAN_CM"/>
+      <viewAttribute id="SCAN_START_DATE"/>
+      <viewAttribute id="SHAPE_COLOR"/>
+      <viewAttribute id="EQUIPNAME"/>
+    
+      <viewAttribute id="EQUIP_MANF"/>
+    
+      <viewAttribute id="SAP_CM_SITE"/>
+    
+      <viewAttribute id="ASSET_ID"/>
+    
+      <viewAttribute id="LINE_PRIORITY"/>
+      <viewAttribute id="MODIFIEDAT"/>
+      <viewAttribute id="CM_DEPT"/>
+      <viewAttribute hidden="true" id="JOIN$AQID$AQID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BUILDING" source="BUILDING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FLOOR" source="FLOOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UPH" source="UPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LINETYPE" source="LINETYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LINEID" source="LINEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID" source="RFID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMMENTS" source="COMMENTS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHAPE_GUID" source="SHAPE_GUID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID_XAXIS" source="RFID_XAXIS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVEREQNAME" source="CARRYOVEREQNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID_YAXIS" source="RFID_YAXIS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OVERRIDE_LINEID" source="OVERRIDE_LINEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZVMODEL" source="ZZVMODEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZALDR_SITE" source="ZALDR_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SERNR" source="SERNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIP_CM" source="EQUIP_CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIP_SITE" source="EQUIP_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIP_STATUS" source="EQUIP_STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVEROLDPROGRAM" source="CARRYOVEROLDPROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVERAQID" source="CARRYOVERAQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SCAN_END_DATE" source="SCAN_END_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ALDERAAN_SITE" source="ALDERAAN_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ALDERAAN_CM" source="ALDERAAN_CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SCAN_START_DATE" source="SCAN_START_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SHAPE_COLOR" source="SHAPE_COLOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSET_ID" source="ASSET_ID"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="LINE_PRIORITY" source="LINE_PRIORITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDAT" source="MODIFIEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM_DEPT" source="CM_DEPT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CM_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AQID$AQID" source="AQID"/>
+    </input>
+    <input node="COM_APPLE_COA_T_COA_AQID_MAIN">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIPNAME" source="EQUIPMENT_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIP_MANF" source="MFR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AQID$AQID" source="AQID"/>
+    </input>
+    <joinAttribute name="JOIN$AQID$AQID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="BUILDING"/>
+      <viewAttribute id="FLOOR"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="UPH" aggregationType="max"/>
+      <viewAttribute id="LINETYPE"/>
+      <viewAttribute id="LINEID"/>
+      <viewAttribute id="RFID"/>
+      <viewAttribute id="COMMENTS"/>
+      <viewAttribute id="SHAPE_GUID"/>
+      <viewAttribute id="RFID_XAXIS"/>
+      <viewAttribute id="CARRYOVEREQNAME"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="CARRYOVEROLDPROGRAM"/>
+      <viewAttribute id="CARRYOVERAQID"/>
+      <viewAttribute id="RFID_YAXIS"/>
+      <viewAttribute id="ZZVMODEL"/>
+      <viewAttribute id="ZALDR_SITE"/>
+      <viewAttribute id="SERNR"/>
+      <viewAttribute id="OVERRIDE_LINEID"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="EQUIP_CM"/>
+      <viewAttribute id="EQUIP_SITE"/>
+      <viewAttribute id="EQUIP_STATUS"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="SCAN_END_DATE"/>
+      <viewAttribute id="ALDERAAN_SITE"/>
+      <viewAttribute id="ALDERAAN_CM"/>
+      <viewAttribute id="SCAN_START_DATE"/>
+      <viewAttribute id="SHAPE_COLOR"/>
+      <viewAttribute id="EQUIPNAME"/>
+      <viewAttribute id="EQUIP_MANF"/>
+    
+      <viewAttribute id="SAP_CM_SITE"/>
+    
+      <viewAttribute id="ASSET_ID" aggregationType="max"/>
+    
+      <viewAttribute id="LINE_PRIORITY"/>
+    
+      <viewAttribute id="MODIFIEDAT"/>
+    
+      <viewAttribute id="CM_DEPT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_3"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Aggregation_1">
+  <attributes>
+    <attribute id="BUILDING" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BUILDING"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="BUILDING"/>
+    </attribute>
+    <attribute id="FLOOR" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FLOOR"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="FLOOR"/>
+    </attribute>
+    <attribute id="SITE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SITE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="SITE"/>
+    </attribute>
+    <attribute id="CM" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="CM"/>
+    </attribute>
+    <attribute id="UPH" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UPH"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="UPH"/>
+    </attribute>
+    <attribute id="LINETYPE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LINETYPE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="LINETYPE"/>
+    </attribute>
+    <attribute id="LINEID" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LINEID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="LINEID"/>
+    </attribute>
+    <attribute id="RFID" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RFID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="RFID"/>
+    </attribute>
+    <attribute id="COMMENTS" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMMENTS"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="COMMENTS"/>
+    </attribute>
+    <attribute id="SHAPE_GUID" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHAPE_GUID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="SHAPE_GUID"/>
+    </attribute>
+    <attribute id="RFID_XAXIS" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RFID_XAXIS"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="RFID_XAXIS"/>
+    </attribute>
+    <attribute id="CARRYOVEREQNAME" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CARRYOVEREQNAME"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="CARRYOVEREQNAME"/>
+    </attribute>
+    <attribute id="STATUS" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="STATUS"/>
+    </attribute>
+    <attribute id="CARRYOVEROLDPROGRAM" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CARRYOVEROLDPROGRAM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="CARRYOVEROLDPROGRAM"/>
+    </attribute>
+    <attribute id="CARRYOVERAQID" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CARRYOVERAQID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="CARRYOVERAQID"/>
+    </attribute>
+    <attribute id="RFID_YAXIS" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RFID_YAXIS"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="RFID_YAXIS"/>
+    </attribute>
+    <attribute id="ZZVMODEL" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ZZVMODEL"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="ZZVMODEL"/>
+    </attribute>
+    <attribute id="ZALDR_SITE" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ZALDR_SITE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="ZALDR_SITE"/>
+    </attribute>
+    <attribute id="SERNR" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SERNR"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="SERNR"/>
+    </attribute>
+    <attribute id="OVERRIDE_LINEID" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OVERRIDE_LINEID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="OVERRIDE_LINEID"/>
+    </attribute>
+    <attribute id="AQID" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AQID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="AQID"/>
+    </attribute>
+    <attribute id="EQUIP_CM" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EQUIP_CM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="EQUIP_CM"/>
+    </attribute>
+    <attribute id="EQUIP_SITE" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EQUIP_SITE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="EQUIP_SITE"/>
+    </attribute>
+    <attribute id="EQUIP_STATUS" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EQUIP_STATUS"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="EQUIP_STATUS"/>
+    </attribute>
+    <attribute id="PROGRAM" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PROGRAM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="PROGRAM"/>
+    </attribute>
+    <attribute id="SCAN_END_DATE" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SCAN_END_DATE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="SCAN_END_DATE"/>
+    </attribute>
+    <attribute id="ALDERAAN_SITE" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ALDERAAN_SITE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="ALDERAAN_SITE"/>
+    </attribute>
+    <attribute id="ALDERAAN_CM" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ALDERAAN_CM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="ALDERAAN_CM"/>
+    </attribute>
+    <attribute id="SCAN_START_DATE" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SCAN_START_DATE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="SCAN_START_DATE"/>
+    </attribute>
+    <attribute id="SHAPE_COLOR" order="30" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SHAPE_COLOR"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="SHAPE_COLOR"/>
+    </attribute>
+    <attribute id="EQUIPNAME" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EQUIPNAME"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="EQUIPNAME"/>
+    </attribute>
+    <attribute id="EQUIP_MANF" order="32" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EQUIP_MANF"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="EQUIP_MANF"/>
+    </attribute>
+  
+    <attribute id="SAP_CM_SITE" order="33" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SAP_CM_SITE"/>
+  
+      <keyMapping columnObjectName="Aggregation_1" columnName="SAP_CM_SITE"/>
+  
+    </attribute>
+  
+    <attribute id="ASSET_ID" order="34" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ASSET_ID"/>
+  
+      <keyMapping columnObjectName="Aggregation_1" columnName="ASSET_ID"/>
+  
+    </attribute>
+  
+    <attribute id="LINE_PRIORITY" order="35" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LINE_PRIORITY"/>
+  
+      <keyMapping columnObjectName="Aggregation_1" columnName="LINE_PRIORITY"/>
+  
+    </attribute>
+  
+    <attribute id="MODIFIEDAT" order="36" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MODIFIEDAT"/>
+  
+      <keyMapping columnObjectName="Aggregation_1" columnName="MODIFIEDAT"/>
+  
+    </attribute>
+  
+    <attribute id="CM_DEPT" order="37" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CM_DEPT"/>
+  
+      <keyMapping columnObjectName="Aggregation_1" columnName="CM_DEPT"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+
+  <sortAttributes>
+
+    <sortAttribute id="SHAPE_COLOR" direction="ASC"/>
+
+    <sortAttribute id="SHAPE_GUID" direction="ASC"/>
+
+    <sortAttribute id="RFID" direction="ASC"/>
+
+  </sortAttributes>
+
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="91" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="RFID_EQUI" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="262" y="661"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="COM_APPLE_COA_T_COA_RFID_ANNOTATION" modelObjectNameSpace="RFID_EQUI" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="-245" y="-109"/>
+      <rectangleSize width="338"/>
+    </shape>
+    <shape modelObjectName="V_ALDERAAN_DATA" modelObjectNameSpace="RFID_EQUI" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="620" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape expanded="true" modelObjectName="AQID_ANNOTATION_DETAIL" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="262" y="536"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="RFID_EQUI" modelObjectNameSpace="AQID_ANNOTATION_DETAIL" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape><shape><upperLeftCorner/><rectangleSize/></shape>
+    <shape modelObjectName="COM_APPLE_COA_T_COA_3DV_HEADER" modelObjectNameSpace="AQID_ANNOTATION_DETAIL" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="-175"/>
+      <rectangleSize width="306"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="272" y="416"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="AQID_ANNOTATION_DETAIL" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="234"/>
+    </shape>
+    <shape modelObjectName="COM_APPLE_COA_T_COA_SHAPES" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="620" y="30"/>
+      <rectangleSize width="275"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="282" y="288"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="234"/>
+    </shape>
+    <shape modelObjectName="COM_APPLE_COA_T_COA_AQID_MAIN" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="293"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="282" y="200"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

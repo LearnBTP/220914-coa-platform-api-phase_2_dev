@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="V_OUTPUT_EXPORT" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="V_OUTPUT_EXPORT"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="COM_APPLE_COA_T_COA_OUTPUT">
+    <resourceUri>COM_APPLE_COA_T_COA_OUTPUT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="FROM_GHSITE"/>
+      <viewAttribute id="FROM_CM"/>
+      <viewAttribute id="FROM_SITE"/>
+      <viewAttribute id="FROM_PRODUCT"/>
+      <viewAttribute id="FROM_BUSINESS_GRP"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="TO_GHSITE"/>
+      <viewAttribute id="TO_CM"/>
+      <viewAttribute id="TO_SITE"/>
+      <viewAttribute id="TO_PRODUCT"/>
+      <viewAttribute id="TO_BUSINESS_GRP"/>
+      <viewAttribute id="QUANTITY"/>
+      <viewAttribute id="CM_BALANCE_QTY"/>
+      <viewAttribute id="STATUS"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="QTY" datatype="DECIMAL" length="15" scale="2" expressionLanguage="SQL">
+        <formula>CASE &quot;STATUS&quot; 
+	 WHEN 'Approved' then &quot;CM_BALANCE_QTY&quot; 
+	 ELSE &quot;QUANTITY&quot; 
+ END</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="COM_APPLE_COA_T_COA_OUTPUT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="FROM_GHSITE"/>
+      <viewAttribute id="FROM_CM"/>
+      <viewAttribute id="FROM_SITE"/>
+      <viewAttribute id="FROM_PRODUCT"/>
+      <viewAttribute id="FROM_BUSINESS_GRP"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="TO_GHSITE"/>
+      <viewAttribute id="TO_CM"/>
+      <viewAttribute id="TO_SITE"/>
+      <viewAttribute id="TO_PRODUCT"/>
+      <viewAttribute id="TO_BUSINESS_GRP"/>
+      <viewAttribute id="QUANTITY" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY" source="QTY"/>
+    </input>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Aggregation_1">
+  <attributes>
+    <attribute id="FROM_GHSITE" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FROM_GHSITE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="FROM_GHSITE"/>
+    </attribute>
+    <attribute id="FROM_CM" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FROM_CM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="FROM_CM"/>
+    </attribute>
+    <attribute id="FROM_SITE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FROM_SITE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="FROM_SITE"/>
+    </attribute>
+    <attribute id="FROM_PRODUCT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FROM_PRODUCT"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="FROM_PRODUCT"/>
+    </attribute>
+    <attribute id="FROM_BUSINESS_GRP" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FROM_BUSINESS_GRP"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="FROM_BUSINESS_GRP"/>
+    </attribute>
+    <attribute id="AQID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AQID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="AQID"/>
+    </attribute>
+    <attribute id="TO_GHSITE" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TO_GHSITE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="TO_GHSITE"/>
+    </attribute>
+    <attribute id="TO_CM" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TO_CM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="TO_CM"/>
+    </attribute>
+    <attribute id="TO_SITE" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TO_SITE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="TO_SITE"/>
+    </attribute>
+    <attribute id="TO_PRODUCT" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TO_PRODUCT"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="TO_PRODUCT"/>
+    </attribute>
+    <attribute id="TO_BUSINESS_GRP" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TO_BUSINESS_GRP"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="TO_BUSINESS_GRP"/>
+    </attribute>
+    <attribute id="QUANTITY" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QTY"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="QUANTITY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="208"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="306"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

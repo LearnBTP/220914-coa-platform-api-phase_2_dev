@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="V_BOM_STRUCTURE" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="V_BOM_STRUCTURE"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="COM_APPLE_COA_T_COA_BOM_STRUCTURE">
+    <resourceUri>COM_APPLE_COA_T_COA_BOM_STRUCTURE</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+    
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="SCOPE" aggregationType="max"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="COM_APPLE_COA_T_COA_BOM_STRUCTURE"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Aggregation_1">
+  <attributes>
+    <attribute id="CM" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="CM"/>
+    </attribute>
+    <attribute id="SITE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SITE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="SITE"/>
+    </attribute>
+    <attribute id="SAP_CM_SITE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SAP_CM_SITE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="SAP_CM_SITE"/>
+    </attribute>
+    <attribute id="PROGRAM" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PROGRAM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="PROGRAM"/>
+    </attribute>
+    <attribute id="SCOPE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SCOPE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="SCOPE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="196"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

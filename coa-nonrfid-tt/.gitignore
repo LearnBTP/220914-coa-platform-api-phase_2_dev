@@ -1,0 +1,171 @@
+# CAP coa-nonrfid-tt
+_out
+*.db
+connection.properties
+default-*.json
+.cdsrc-private.json
+gen/
+node_modules/
+target/
+
+# Web IDE, App Studio
+.che/
+.gen/
+
+# MTA
+*_mta_build_tmp
+*.mtar
+mta_archives/
+
+# Other
+.DS_Store
+*.orig
+*.log
+
+*.iml
+*.flattened-pom.xml
+*package-lock.json
+# IDEs
+# .vscode
+# .idea
+
+# auto generated wildcard
+COA-API/coa-db/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/.env1
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/db/.env
+# auto generated wildcard
+COA-API/coa-nonrfid-tt/db/.env
+# auto generated wildcard
+coa-lineplan/db/.env
+# auto generated wildcard
+coa-nonrfid-tt/.env5
+# auto generated wildcard
+220914-coa-platform-api/coa-db/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/.env1
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/db/.env
+
+# auto generated wildcard
+*.env
+# auto generated wildcard
+*.env*
+
+# auto generated wildcard
+*default-env.json
+
+# auto generated wildcard
+coa-lineplan/db/.env
+# auto generated wildcard
+coa-nonrfid-tt/.env5
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/.env6
+# auto generated wildcard
+220914-coa-platform-api/coa-lineplan/.env3
+# auto generated wildcard
+220914-coa-platform-api/coa-nonrfid-tt/default-env.json
+# auto generated wildcard
+220914-coa-platform-api/coa-lineplan/default-env.json
+# auto generated wildcard
+220914-coa-platform-api/coa-db/default-env.json
+# auto generated wildcard
+220914-coa-platform-api/coa-output/default-env.json
+
+# auto generated wildcard
+220914-coa-platform-api/coa-output/.env3

@@ -1,0 +1,756 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="V_UNSCANNABLE_PROJ" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="V_UNSCANNABLE_PROJ"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="V_ALDERAAN_DATA">
+    <resourceUri>V_ALDERAAN_DATA</resourceUri>
+  </DataSource>
+  <DataSource id="COM_APPLE_COA_T_COA_NPI_PROGRAM">
+    <resourceUri>COM_APPLE_COA_T_COA_NPI_PROGRAM</resourceUri>
+  </DataSource>
+  <DataSource id="V_NONRFID_PROJECTION">
+    <resourceUri>V_NONRFID_PROJECTION</resourceUri>
+  </DataSource>
+  <DataSource id="Projection_3$$$$V_NONRFID_PROJECTION$$">
+    <resourceUri>V_NONRFID_PROJECTION</resourceUri>
+  </DataSource>
+  <DataSource id="COM_APPLE_COA_T_COA_RFID_ANNOTATION">
+    <resourceUri>COM_APPLE_COA_T_COA_RFID_ANNOTATION</resourceUri>
+  </DataSource>
+  <DataSource id="Join_7$$$$COM_APPLE_COA_T_COA_RFID_ANNOTATION$$">
+    <resourceUri>COM_APPLE_COA_T_COA_RFID_ANNOTATION</resourceUri>
+  </DataSource>
+  <DataSource id="Join_1$$$$V_ALDERAAN_DATA$$">
+    <resourceUri>V_ALDERAAN_DATA</resourceUri>
+  </DataSource>
+  <DataSource id="Join_8$$$$COM_APPLE_COA_T_COA_NPI_PROGRAM$$">
+    <resourceUri>COM_APPLE_COA_T_COA_NPI_PROGRAM</resourceUri>
+  </DataSource>
+  <DataSource id="Join_2$$$$COM_APPLE_COA_T_COA_NPI_PROGRAM$$">
+    <resourceUri>COM_APPLE_COA_T_COA_NPI_PROGRAM</resourceUri>
+  </DataSource>
+  <DataSource id="Minus_1$$$$V_ALDERAAN_DATA$$">
+    <resourceUri>V_ALDERAAN_DATA</resourceUri>
+  </DataSource>
+  <DataSource id="Join_4$$$$V_ALDERAAN_DATA$$">
+    <resourceUri>V_ALDERAAN_DATA</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:MinusView" id="Minus_2">
+    <viewAttributes>
+      <viewAttribute id="PROGRAM"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="V_ALDERAAN_DATA">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="CM_PROGRAM"/>
+    </input>
+    <input node="COM_APPLE_COA_T_COA_NPI_PROGRAM">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="BOH"/>
+      <viewAttribute id="CONSUMABLES"/>
+      <viewAttribute id="RFID_SCOPE"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="AQID_F" datatype="NVARCHAR" length="30" expressionLanguage="SQL">
+        <formula>REPLACE(&quot;AQID&quot;, '-R', '')</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="V_NONRFID_PROJECTION"/>
+    <filter>&quot;CONSUMABLES&quot; != 'Y' and &quot;RFID_SCOPE&quot; = 'Y' </filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="BOH"/>
+    
+      <viewAttribute id="CONSUMABLES"/>
+      <viewAttribute id="RFID_SCOPE"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="AQID_F" datatype="NVARCHAR" length="30" expressionLanguage="SQL">
+        <formula>REPLACE(&quot;AQID&quot;, '-R', '')</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Projection_3$$$$V_NONRFID_PROJECTION$$"/>
+    <filter>&quot;BOH&quot; != 0 and &quot;CONSUMABLES&quot; != 'Y' and &quot;RFID_SCOPE&quot; = 'Y' </filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_6">
+    <viewAttributes>
+      <viewAttribute id="ASSET_ID"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="MODIFIEDAT" aggregationType="max"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="COM_APPLE_COA_T_COA_RFID_ANNOTATION"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_5">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="BOH" aggregationType="min"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Projection_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID_F"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_7" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="CARRYOVERAQID"/>
+      <viewAttribute id="CARRYOVEROLDPROGRAM"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="ASSET_ID"/>
+      <viewAttribute hidden="true" id="JOIN$ASSET_ID$ASSET_ID"/>
+      <viewAttribute hidden="true" id="JOIN$STATUS$STATUS"/>
+      <viewAttribute hidden="true" id="JOIN$MODIFIEDAT$MODIFIEDAT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Aggregation_6">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ASSET_ID$ASSET_ID" source="ASSET_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STATUS$STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MODIFIEDAT$MODIFIEDAT" source="MODIFIEDAT"/>
+    </input>
+    <input node="Join_7$$$$COM_APPLE_COA_T_COA_RFID_ANNOTATION$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVERAQID" source="CARRYOVERAQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRYOVEROLDPROGRAM" source="CARRYOVEROLDPROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSET_ID" source="ASSET_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ASSET_ID$ASSET_ID" source="ASSET_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STATUS$STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MODIFIEDAT$MODIFIEDAT" source="MODIFIEDAT"/>
+    </input>
+    <joinAttribute name="JOIN$ASSET_ID$ASSET_ID"/>
+    <joinAttribute name="JOIN$STATUS$STATUS"/>
+    <joinAttribute name="JOIN$MODIFIEDAT$MODIFIEDAT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_6" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="BOH_T"/>
+      <viewAttribute hidden="true" id="JOIN$GH_SITE$GH_SITE"/>
+      <viewAttribute hidden="true" id="JOIN$PROGRAM$PROGRAM"/>
+      <viewAttribute hidden="true" id="JOIN$CM$CM"/>
+      <viewAttribute hidden="true" id="JOIN$SITE$SITE"/>
+      <viewAttribute hidden="true" id="JOIN$AQID_F$AQID"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="SAP_CM_SITE" datatype="NVARCHAR" length="9" expressionLanguage="SQL">
+        <formula>CONCAT(&quot;CM&quot;,CONCAT('-', &quot;SITE&quot;))</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="BOH" datatype="INTEGER" expressionLanguage="SQL">
+    
+        <formula>IFNULL(&quot;BOH_T&quot;, 0)</formula>
+    
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID_F"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$GH_SITE$GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AQID_F$AQID" source="AQID_F"/>
+    </input>
+    <input node="Aggregation_5">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BOH_T" source="BOH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$GH_SITE$GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AQID_F$AQID" source="AQID"/>
+    </input>
+    <joinAttribute name="JOIN$GH_SITE$GH_SITE"/>
+    <joinAttribute name="JOIN$PROGRAM$PROGRAM"/>
+    <joinAttribute name="JOIN$CM$CM"/>
+    <joinAttribute name="JOIN$SITE$SITE"/>
+    <joinAttribute name="JOIN$AQID_F$AQID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="RFID"/>
+      <viewAttribute id="ASSET_ID"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+      <viewAttribute id="ASSET_STATE"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute hidden="true" id="JOIN$ASSET_ID$ASSET_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1$$$$V_ALDERAAN_DATA$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSET_ID" source="ASSET_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSET_STATE" source="ASSET_STATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GH_SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID" source="RFID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ASSET_ID$ASSET_ID" source="ASSET_ID"/>
+    </input>
+    <input node="Join_7">
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="CARRYOVERAQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="CARRYOVEROLDPROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ASSET_ID$ASSET_ID" source="ASSET_ID"/>
+    </input>
+    <filter>( &quot;STATUS&quot;  = 'PUBLISH' or &quot;STATUS&quot; is null ) and &quot;RFID&quot;!= ''</filter>
+    <joinAttribute name="JOIN$ASSET_ID$ASSET_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_8" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+      <viewAttribute id="BOH"/>
+      <viewAttribute hidden="true" id="JOIN$PROGRAM$PROGRAM"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_6">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CM_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BOH" source="BOH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+    </input>
+    <input node="Join_8$$$$COM_APPLE_COA_T_COA_NPI_PROGRAM$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+    </input>
+    <joinAttribute name="JOIN$PROGRAM$PROGRAM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="inner" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="RFID"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+      <viewAttribute id="ASSET_STATE"/>
+      <viewAttribute hidden="true" id="JOIN$PROGRAM$PROGRAM"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID" source="RFID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CM_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSET_STATE" source="ASSET_STATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+    </input>
+    <input node="Join_2$$$$COM_APPLE_COA_T_COA_NPI_PROGRAM$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+    </input>
+    <filter>&quot;ASSET_STATE&quot; != '9 SOLD (hidden)' and &quot;ASSET_STATE&quot; != '10 SCRAP (hidden)' and &quot;ASSET_STATE&quot; != '5 BROKEN (BRKN)' and &quot;ASSET_STATE&quot; != '6 RELEASED_TO_ART (SPLS)'</filter>
+    <joinAttribute name="JOIN$PROGRAM$PROGRAM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:MinusView" id="Minus_1">
+    <viewAttributes>
+      <viewAttribute id="ASSET_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Minus_1$$$$V_ALDERAAN_DATA$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSET_ID" source="ASSET_ID"/>
+    </input>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSET_ID" source="ASSET_ID"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_4">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+      <viewAttribute id="BOH" aggregationType="min"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_8"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="RFID" aggregationType="count"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_2"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_N" joinType="inner" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="ASSET_ID"/>
+      <viewAttribute id="ASSET_STATE"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+      <viewAttribute id="AREA"/>
+      <viewAttribute hidden="true" id="JOIN$ASSET_ID$ASSET_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CM" datatype="NVARCHAR" length="30" expressionLanguage="SQL">
+        <formula>SUBSTR(&quot;SAP_CM_SITE&quot;, 0,4)</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="SITE" datatype="NVARCHAR" length="30" expressionLanguage="SQL">
+        <formula>SUBSTR(&quot;SAP_CM_SITE&quot;, 6, 4)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Minus_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ASSET_ID$ASSET_ID" source="ASSET_ID"/>
+    </input>
+    <input node="Join_4$$$$V_ALDERAAN_DATA$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GH_SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="CM_PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="APPLE_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSET_ID" source="ASSET_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSET_STATE" source="ASSET_STATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AREA" source="AREA"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ASSET_ID$ASSET_ID" source="ASSET_ID"/>
+    </input>
+    <filter>&quot;ASSET_STATE&quot; != '9 SOLD (hidden)' and &quot;ASSET_STATE&quot; != '10 SCRAP (hidden)' and &quot;ASSET_STATE&quot; != '5 BROKEN (BRKN)' and &quot;ASSET_STATE&quot; != '6 RELEASED_TO_ART (SPLS)'</filter>
+    <joinAttribute name="JOIN$ASSET_ID$ASSET_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+      <viewAttribute id="BOH"/>
+      <viewAttribute id="RFID"/>
+      <viewAttribute hidden="true" id="JOIN$GH_SITE$GH_SITE"/>
+      <viewAttribute hidden="true" id="JOIN$PROGRAM$PROGRAM"/>
+      <viewAttribute hidden="true" id="JOIN$AQID$AQID"/>
+      <viewAttribute hidden="true" id="JOIN$SAP_CM_SITE$SAP_CM_SITE"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="PROJECTED_QTY" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>IFNULL(&quot;BOH&quot; - &quot;RFID&quot;, &quot;BOH&quot;)</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="FROM_BUSINESS_GRP" datatype="NVARCHAR" length="18" expressionLanguage="SQL">
+    
+        <formula>CASE &quot;GH_SITE&quot; 
+	 WHEN '' then '' 
+	 ELSE ''
+ END</formula>
+    
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="NPI_INDICATOR" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>CASE &quot;GH_SITE&quot; 
+	 WHEN '' then 'NPI' 
+	 ELSE 'NPI' 
+ END</formula>
+      </calculatedViewAttribute></calculatedViewAttributes>
+    <input node="Aggregation_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CM_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BOH" source="BOH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$GH_SITE$GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AQID$AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SAP_CM_SITE$SAP_CM_SITE" source="SAP_CM_SITE"/>
+    </input>
+    <input node="Aggregation_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID" source="RFID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$GH_SITE$GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AQID$AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SAP_CM_SITE$SAP_CM_SITE" source="SAP_CM_SITE"/>
+    </input>
+    <joinAttribute name="JOIN$GH_SITE$GH_SITE"/>
+    <joinAttribute name="JOIN$PROGRAM$PROGRAM"/>
+    <joinAttribute name="JOIN$AQID$AQID"/>
+    <joinAttribute name="JOIN$SAP_CM_SITE$SAP_CM_SITE"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_5" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="ASSET_ID"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="AREA"/>
+      <viewAttribute hidden="true" id="JOIN$PROGRAM$PROGRAM"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ASSET_ID" source="ASSET_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CM_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AREA" source="AREA"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+    </input>
+    <input node="Minus_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+    </input>
+    <joinAttribute name="JOIN$PROGRAM$PROGRAM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_3">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="ASSET_ID" aggregationType="count"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+    
+      <viewAttribute id="AREA" aggregationType="max"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_5"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="ASSET_ID"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+    
+      <viewAttribute id="FROM_BUSINESS_GRP"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="PROJECTED_QTY" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>&quot;ASSET_ID&quot; + 0</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="NPI_INDICATOR" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>CASE &quot;GH_SITE&quot; 
+	 WHEN '' then 'NON-NPI' 
+	 ELSE 'NON-NPI' 
+ END</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Aggregation_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="FROM_BUSINESS_GRP" source="AREA"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="FROM_BUSINESS_GRP"/>
+      <viewAttribute id="PROJECTED_QTY"/>
+    
+      <viewAttribute id="NPI_INDICATOR"/>
+    
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_3" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROJECTED_QTY" source="PROJECTED_QTY"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="FROM_BUSINESS_GRP" source="FROM_BUSINESS_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NPI_INDICATOR" source="NPI_INDICATOR"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CM_SITE"/>
+    </input>
+    <input node="Projection_1" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROJECTED_QTY" source="PROJECTED_QTY"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="FROM_BUSINESS_GRP" source="FROM_BUSINESS_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NPI_INDICATOR" source="NPI_INDICATOR"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CM_SITE"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_2">
+    <viewAttributes>
+      <viewAttribute id="FROM_BUSINESS_GRP"/>
+      <viewAttribute id="PROJECTED_QTY" aggregationType="sum"/>
+    
+      <viewAttribute id="NPI_INDICATOR"/>
+    
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Union_1"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Aggregation_2">
+  <attributes>
+    <attribute id="FROM_BUSINESS_GRP" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FROM_BUSINESS_GRP"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="FROM_BUSINESS_GRP"/>
+    </attribute>
+    <attribute id="PROJECTED_QTY" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PROJECTED_QTY"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="PROJECTED_QTY"/>
+    </attribute>
+  
+    <attribute id="NPI_INDICATOR" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NPI_INDICATOR"/>
+  
+      <keyMapping columnObjectName="Aggregation_2" columnName="NPI_INDICATOR"/>
+  
+    </attribute>
+  
+    <attribute id="GH_SITE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GH_SITE"/>
+  
+      <keyMapping columnObjectName="Aggregation_2" columnName="GH_SITE"/>
+  
+    </attribute>
+    <attribute id="PROGRAM" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PROGRAM"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="PROGRAM"/>
+    </attribute>
+    <attribute id="AQID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AQID"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="AQID"/>
+    </attribute>
+    <attribute id="CM" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CM"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="CM"/>
+    </attribute>
+    <attribute id="SITE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SITE"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="SITE"/>
+    </attribute>
+    <attribute id="SAP_CM_SITE" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SAP_CM_SITE"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="SAP_CM_SITE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Minus_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="620" y="890"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-723" y="1006"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-338" y="1218"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_6" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="145" y="1688"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-338" y="1009"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_7" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="145" y="1535"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Aggregation_6" modelObjectNameSpace="Join_7" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="154"/>
+    </shape>
+    <shape modelObjectName="COM_APPLE_COA_T_COA_RFID_ANNOTATION" modelObjectNameSpace="Join_7" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="338"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_6" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-524" y="853"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_6" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="170"/>
+    </shape>
+    <shape modelObjectName="Aggregation_5" modelObjectNameSpace="Join_6" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="148"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="145" y="1336"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="V_ALDERAAN_DATA" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="-124" y="-24"/>
+      <rectangleSize width="232"/>
+    </shape>
+    <shape modelObjectName="Join_7" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="371" y="8"/>
+      <rectangleSize width="234"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_8" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-524" y="743"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_6" modelObjectNameSpace="Join_8" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="161"/>
+    </shape>
+    <shape modelObjectName="COM_APPLE_COA_T_COA_NPI_PROGRAM" modelObjectNameSpace="Join_8" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="315"/>
+    </shape>
+  
+  
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-105" y="1027"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="162"/>
+    </shape>
+    <shape modelObjectName="COM_APPLE_COA_T_COA_NPI_PROGRAM" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="315"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Minus_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="447" y="1057"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-524" y="654"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-105" y="743"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="250" y="880"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Minus_1" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="139"/>
+    </shape>
+    <shape modelObjectName="V_ALDERAAN_DATA" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="196"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-105" y="511"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Aggregation_4" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="344" y="12"/>
+      <rectangleSize width="161"/>
+    </shape>
+    <shape modelObjectName="Aggregation_1" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="846" y="13"/>
+      <rectangleSize width="161"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_5" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="422" y="761"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_4" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="162"/>
+    </shape>
+    <shape modelObjectName="Minus_2" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="142"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="422" y="664"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="417" y="558"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+  
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="105" y="345"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="105" y="234"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

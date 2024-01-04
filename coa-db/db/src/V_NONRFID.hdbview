@@ -1,0 +1,148 @@
+VIEW "V_NONRFID" AS (
+  (
+    SELECT V_NONRFID_PROJECTION.CM,
+      V_NONRFID_PROJECTION.Site,
+      CONCAT (
+        CONCAT(V_NONRFID_PROJECTION.CM, '-'),
+        V_NONRFID_PROJECTION.Site
+      ) AS SAP_CM_Site,
+      V_NONRFID_PROJECTION.Program,
+      V_NONRFID_PROJECTION.Aqid,
+      V_NONRFID_PROJECTION.Station,
+      V_NONRFID_PROJECTION.Scope,
+      V_NONRFID_PROJECTION.GH_Site,
+      V_NONRFID_PROJECTION.SHORT_NAME,
+      V_NONRFID_PROJECTION.Line,
+      V_NONRFID_PROJECTION.Area,
+      V_NONRFID_PROJECTION.Parent_Item,
+      V_NONRFID_PROJECTION.ALT_Station,
+      V_NONRFID_PROJECTION.Group_Priority,
+      SUBSTR_BEFORE(V_NONRFID_PROJECTION.Group_Priority, '-') AS grp,
+      SUBSTR_AFTER(V_NONRFID_PROJECTION.Group_Priority, '-') AS Prio,
+      V_NONRFID_PROJECTION.Uph,
+      V_NONRFID_PROJECTION.SPL,
+      V_NONRFID_PROJECTION.QPL,
+      V_NONRFID_PROJECTION.BOH,
+      V_NONRFID_PROJECTION.Carry_Over,
+      V_NONRFID_PROJECTION.RFID_Scope,
+      V_NONRFID_PROJECTION.Equipment_Name,
+      V_NONRFID_PROJECTION.Equipment_Type,
+      V_NONRFID_PROJECTION.Mfr,
+      V_NONRFID_PROJECTION.Dept,
+      "V_NONRFID_PROJECTION"."GROUP",
+      CASE
+        WHEN T_COA_NONRFID_Y.LineId IS NULL THEN ''
+        ELSE T_COA_NONRFID_Y.LineId
+      END AS LineId,
+      CASE
+        WHEN T_COA_NONRFID_Y.Line_Priority IS NULL THEN 100000
+        ELSE T_COA_NONRFID_Y.Line_Priority
+      END AS Line_Priority,
+      CASE
+        WHEN (
+          T_COA_AQID_MAPPING.Cm_Recommendation = ''
+          OR T_COA_AQID_MAPPING.Cm_Recommendation IS NULL
+        ) THEN T_COA_AQID_MAPPING.Mapped_Aqid
+        ELSE T_COA_AQID_MAPPING.Cm_Recommendation
+      END AS Mapped_Aqid,
+      T_COA_NONRFID_Y.confLevel
+    FROM V_NONRFID_PROJECTION AS V_NONRFID_PROJECTION
+      LEFT OUTER JOIN V_NONRFID_AQIDMAP AS T_COA_AQID_MAPPING
+ ON V_NONRFID_PROJECTION.Aqid = T_COA_AQID_MAPPING.Raw_Aqid
+      AND V_NONRFID_PROJECTION.Program = T_COA_AQID_MAPPING.Program
+      AND V_NONRFID_PROJECTION.GH_Site = T_COA_AQID_MAPPING.GH_Site
+      AND V_NONRFID_PROJECTION.Site = T_COA_AQID_MAPPING.Site
+      AND V_NONRFID_PROJECTION.CM = T_COA_AQID_MAPPING.CM
+      AND T_COA_AQID_MAPPING.rn = 1
+      INNER JOIN (
+        SELECT DISTINCT CM,
+          Site,
+          Program,
+          Station,
+          GH_site,
+          Line,
+          Uph,
+          LineID,
+          Line_Priority,
+          min(confLevel) AS confLevel
+        FROM "V_RFID_LINEINFO"
+        GROUP BY CM,
+          Site,
+          Program,
+          Station,
+          GH_site,
+          Line,
+          Uph,
+          LineID,
+          Line_Priority
+      ) AS T_COA_NONRFID_Y
+ ON V_NONRFID_PROJECTION.CM = T_COA_NONRFID_Y.CM
+      AND V_NONRFID_PROJECTION.Site = T_COA_NONRFID_Y.Site
+      AND V_NONRFID_PROJECTION.Program = T_COA_NONRFID_Y.Program
+      AND V_NONRFID_PROJECTION.Line = T_COA_NONRFID_Y.Line
+      AND V_NONRFID_PROJECTION.Uph = T_COA_NONRFID_Y.Uph
+      AND V_NONRFID_PROJECTION.Station = T_COA_NONRFID_Y.Station
+      AND V_NONRFID_PROJECTION.GH_Site = T_COA_NONRFID_Y.GH_Site
+    WHERE V_NONRFID_PROJECTION.RFID_Scope = 'N'
+      AND NOT (V_NONRFID_PROJECTION.ID = '')
+      AND NOT (V_NONRFID_PROJECTION.BOH = 0)
+      AND EXISTS (
+        SELECT DISTINCT *
+        FROM v_nonrfid_projection AS proj_Y
+          INNER JOIN COM_APPLE_COA_T_COA_RFID_ANNOTATION AS annotation
+ ON proj_Y.CM = annotation.CM
+          AND proj_Y.Site = annotation.Site
+          AND proj_Y.Line = annotation.LineType
+          AND proj_Y.Program = annotation.CARRYOVEROLDPROGRAM
+          AND proj_Y.Uph = annotation.Uph
+          AND annotation.CARRYOVERAQID LIKE CONCAT(proj_Y.SHORT_NAME, '_%')
+          AND annotation.status = 'PUBLISH'
+        WHERE proj_Y.CM = v_nonrfid_projection.CM
+          AND proj_Y.Site = v_nonrfid_projection.Site
+          AND proj_Y.gh_site = v_nonrfid_projection.gh_site
+          AND proj_Y.Line = v_nonrfid_projection.Line
+          AND proj_Y.Program = v_nonrfid_projection.Program
+          AND proj_Y.Uph = v_nonrfid_projection.Uph
+          AND proj_Y.Station = v_nonrfid_projection.Station
+          AND proj_Y.RFID_Scope = 'Y'
+          and not  (proj_Y.BOH = 0)
+          and not (proj_Y.consumables = 'Y')
+          AND NOT (proj_Y.ID = '')
+      )
+  )
+  UNION
+  (
+    SELECT CM,
+      Site,
+      SAP_CM_Site,
+      Program,
+      Aqid,
+      Station,
+      Scope,
+      GH_Site,
+      SHORT_NAME,
+      Line,
+      Area,
+      Parent_Item,
+      ALT_Station,
+      Group_Priority,
+      grp,
+      Prio,
+      Uph,
+      SPL,
+      QPL,
+      BOH,
+      Carry_Over,
+      RFID_Scope,
+      Equipment_Name,
+      Equipment_Type,
+      Mfr,
+      Dept,
+      "GROUP",
+      LineId,
+      Line_Priority,
+      Mapped_Aqid,
+      confLevel
+    FROM "V_NONRFID_NO_Y"
+  )
+)

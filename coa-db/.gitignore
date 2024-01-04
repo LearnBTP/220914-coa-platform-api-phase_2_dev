@@ -1,0 +1,179 @@
+# CAP coa-db
+_out
+# CAP COA_3DV_LINE
+_out
+*.db
+connection.properties
+default-*.json
+.cdsrc-private.json
+gen/
+node_modules/
+target/
+
+# Web IDE, App Studio
+.che/
+.gen/
+
+# MTA
+*_mta_build_tmp
+*.mtar
+mta_archives/
+
+# Other
+.DS_Store
+*.orig
+*.log
+
+*.iml
+*.flattened-pom.xml
+
+# IDEs
+# .vscode
+# .idea
+
+# auto generated wildcard
+COA-API/coa-db/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/.env1
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/gen/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/gen/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/gen/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/gen/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/gen/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/gen/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/gen/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/gen/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-db/gen/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/db/.env
+# auto generated wildcard
+COA-API/coa-3dv/db/.env
+# auto generated wildcard
+coa-lineplan/db/.env
+# auto generated wildcard
+coa-3dv/.env5
+# auto generated wildcard
+220914-coa-platform-api/coa-db/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/.env1
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-db/gen/db/.env
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/db/.env
+
+# auto generated wildcard
+coa-lineplan/db/.env
+# auto generated wildcard
+coa-3dv/.env5
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/.env6
+
+# auto generated wildcard
+*.env
+
+# auto generated wildcard
+*.env*
+
+# auto generated wildcard
+*default-env.json
+*package-lock.json
+# auto generated wildcard
+220914-coa-platform-api/coa-lineplan/.env3
+
+# auto generated wildcard
+220914-coa-platform-api/coa-3dv/default-env.json
+
+# auto generated wildcard
+220914-coa-platform-api/coa-lineplan/default-env.json
+
+# auto generated wildcard
+220914-coa-platform-api/coa-db/default-env.json
+
+# auto generated wildcard
+220914-coa-platform-api/coa-output/default-env.json
+
+# auto generated wildcard
+220914-coa-platform-api/coa-output/.env3

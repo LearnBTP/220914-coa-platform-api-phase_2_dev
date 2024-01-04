@@ -1,0 +1,53 @@
+VIEW "V_SIMU_RFID" AS
+(SELECT 
+        t2.SIMULATION_NAME as SIMULATION_NAME,
+        t2.FROM_GHSITE as GHSITE,
+        t2.TO_CM as TO_CM,
+        t2.TO_SITE as TO_SITE,
+        t2.TO_PROGRAM as TO_PROGRAM,
+        t2.TO_BUSINESS_GRP as TO_BUSINESS_GRP,
+        t2.TO_GHSITE as TO_GHSITE,
+        t1.RAW_AQID as RAW_AQID,
+        IFNULL(t1.MAPPED_AQID,'') as MAPPED_AQID,
+        t1.SHORT_NAME as SHORT_NAME,
+        t1.SERNR as SERIAL_NUMBER,
+        t1.ASSETOWN as ASSET_OWN,
+        t1.EQUIPMENT_NAME as EQ_NAME,
+        t1.AREA as AREA,
+        t1.AREA as FROM_BUSINESS_GRP,
+        t1.CM_DEPT as CM_DEPT,
+        t1.LOB_NAME as LOB_NAME,
+        SUBSTRING(t1.STATUS,1,5) as STATUS,
+        t1.CARRYOVERAQID as CO_AQID,
+        t1.CARRYOVEREQNAME as CO_EQ,
+        t1.CARRYOVEROLDPROGRAM as CO_PROGRAM,
+        t1.LINEID as LINE_ID,
+        t1.LINETYPE as LINE_TYPE,
+        t1.UPH as UPH,
+        t1.CM as CM,
+        t1.SITE as SITE,
+        t1.ZALDR_CMPROGRAM as CM_PROGRAM,
+        t1.TRANSFER_FLAG as TRANSFER_FLAG,
+        t1.RFID as RFID,
+        t1.AQID as AQID,
+        CASE WHEN(t2.TO_GHSITE=t1.TO_GHSITE and t2.TO_PROGRAM=t1.TO_PROGRAM and t2.TO_BUSINESS_GRP=t1.TP_BUSINESS_GRP) then 'YES' else 'NO' END as MATCH_STATUS,
+        CASE WHEN(t2.TO_GHSITE=t1.TO_GHSITE and t2.TO_PROGRAM=t1.TO_PROGRAM and t2.TO_BUSINESS_GRP=t1.TP_BUSINESS_GRP and t1.TO_GHSITE is not null and t1.TO_PROGRAM is not null and t1.TP_BUSINESS_GRP is not null) then 1 else 0 END as MATCH_QTY,
+        CASE WHEN(t2.TO_GHSITE=t1.TO_GHSITE and t2.TO_PROGRAM=t1.TO_PROGRAM and t2.TO_BUSINESS_GRP=t1.TP_BUSINESS_GRP and t1.TO_GHSITE is not null and t1.TO_PROGRAM is not null and t1.TP_BUSINESS_GRP is not null) then 0 else 1 END as MISMATCH_QTY
+        FROM V_RFIDDETAILS as t1
+        inner join
+        (SELECT
+            FROM_GHSITE,
+            PROGRAM,
+            LINE_ID,
+            TO_GHSITE,
+            TO_CM,
+            TO_SITE,
+            TO_PROGRAM,
+            TO_BUSINESS_GRP,
+            SIMULATION_NAME
+        FROM COM_APPLE_COA_T_COA_SIMULATION_H
+        ) as t2
+        on t1.zaldr_site = t2.from_ghsite
+        and t1.carryoveroldprogram=t2.program
+        and t1.lineid = t2.line_id
+        where (t1.TRANSFER_FLAG!='Y' or t1.TRANSFER_FLAG is null))

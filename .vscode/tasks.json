@@ -1,0 +1,185 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "cds-deploy-to-hana-coa-db-coa-db",
+      "type": "shell",
+      "command": "cds",
+      "args": [
+        "deploy",
+        "--to",
+        "hana:coa-db",
+        "--no-save"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/coa-db"
+      },
+      "isBackground": true,
+      "problemMatcher": [
+        "$cap-hdi-bind-handler"
+      ]
+    },
+    {
+      "label": "cds-deploy-to-hana-coa-output-coa-db",
+      "type": "shell",
+      "command": "cds",
+      "args": [
+        "deploy",
+        "--to",
+        "hana:coa-db",
+        "--no-save"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/coa-output"
+      },
+      "isBackground": true,
+      "problemMatcher": [
+        "$cap-hdi-bind-handler"
+      ]
+    },
+    {
+      "label": "cds-deploy-to-hana-coa-rfid-tt-coa-db",
+      "type": "shell",
+      "command": "cds",
+      "args": [
+        "deploy",
+        "--to",
+        "hana:coa-db",
+        "--no-save"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/coa-rfid-tt"
+      },
+      "isBackground": true,
+      "problemMatcher": [
+        "$cap-hdi-bind-handler"
+      ]
+    },
+    {
+      "label": "cds-deploy-to-hana-coa-lineplan-coa-db",
+      "type": "shell",
+      "command": "cds",
+      "args": [
+        "deploy",
+        "--to",
+        "hana:coa-db",
+        "--no-save"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/coa-lineplan"
+      },
+      "isBackground": true,
+      "problemMatcher": [
+        "$cap-hdi-bind-handler"
+      ]
+    },
+    {
+      "label": "cds-deploy-to-hana-coa-changelog-coa-db",
+      "type": "shell",
+      "command": "cds",
+      "args": [
+        "deploy",
+        "--to",
+        "hana:coa-db",
+        "--no-save"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/coa-changelog"
+      },
+      "isBackground": true,
+      "problemMatcher": [
+        "$cap-hdi-bind-handler"
+      ]
+    },
+    {
+      "label": "cds-deploy-to-hana-coa_3dv_line-coa-db",
+      "type": "shell",
+      "command": "cds",
+      "args": [
+        "deploy",
+        "--to",
+        "hana:coa-db",
+        "--no-save"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/coa_3dv_line"
+      },
+      "isBackground": true,
+      "problemMatcher": [
+        "$cap-hdi-bind-handler"
+      ]
+    },
+    {
+      "label": "cds-deploy-to-hana-coa-nonrfid-tt-coa-db",
+      "type": "shell",
+      "command": "cds",
+      "args": [
+        "deploy",
+        "--to",
+        "hana:coa-db",
+        "--no-save"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/coa-nonrfid-tt"
+      },
+      "isBackground": true,
+      "problemMatcher": [
+        "$cap-hdi-bind-handler"
+      ]
+    },
+    {
+      "label": "cds-deploy-to-hana-coa-rfid-unscannable-coa-db",
+      "type": "shell",
+      "command": "cds",
+      "args": [
+        "deploy",
+        "--to",
+        "hana:coa-db",
+        "--no-save"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/coa-rfid-unscannable"
+      },
+      "isBackground": true,
+      "problemMatcher": [
+        "$cap-hdi-bind-handler"
+      ]
+    },
+    {
+      "label": "cds-deploy-to-hana-coa-nonrfid-projection-coa-db",
+      "type": "shell",
+      "command": "cds",
+      "args": [
+        "deploy",
+        "--to",
+        "hana:coa-db",
+        "--no-save"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/coa-nonrfid-projection"
+      },
+      "isBackground": true,
+      "problemMatcher": [
+        "$cap-hdi-bind-handler"
+      ]
+    },
+    {
+      "label": "cds-deploy-to-hana-coa-npi_program-coa-db",
+      "type": "shell",
+      "command": "cds",
+      "args": [
+        "deploy",
+        "--to",
+        "hana:coa-db",
+        "--no-save"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/coa-npi_program"
+      },
+      "isBackground": true,
+      "problemMatcher": [
+        "$cap-hdi-bind-handler"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+    "MAIN_LINE": "T_COA_MAIN_LINE",
+    "AQIUD_MAIN": "T_COA_AQID_MAIN",
+    "LINEPLAN": "T_COA_LINEPLAN",
+    "SUBLINE": "T_COA_SUBLINE",
+    "RFID": "T_COA_RFID_TT",
+    "ANNOTATION": "T_COA_RFID_ANNOTATION",
+    "OUTPUT": "T_COA_OUTPUT",
+    "USER_ATTRIBUTES": "xs.user.attributes",
+    "KEY_TABLE": "V_KEY_FIELDS",
+    "CONSTRAINT_KEY": "PRIMARY KEY",
+    "FIELDS_TABLE": "V_VIEW_TABLES",
+    "errors": {
+        "NOT_ALLOWED": "User does not have permissions to access app",
+        "ENITIY_EXISTS": "ENTITY_ALREADY_EXISTS",
+        "INERNAL_ERROR": 500,
+        "NOT_AUTHORIZED_ERROR": 400,
+        "NOT_AUTHORIZED": "User doesn't have access to read Changelog Records",
+        "ACCESS_ERROR": "There was error gaining access",
+        "NO_ROLE_ERROR": "Access denied, There is no role to access the table",
+        "ROLE_NOT_ALLOWED": "doesn't have access to modify Changelog Records"
+    },
+    "roles": {
+        "MAINLINE_READ_ONLY": "MainLineReadOnly",
+        "AQUID":"AqidModify",
+        "SUBLINE": "SubLineModify",
+        "RFID": "RfidOnHandTTModify",
+        "MAINLINE_MODIFY": "MainLineModify",
+        "ANNOTATION":"AnnotationModify",
+        "OUTPUT": "COOutputModify"
+    }
+}

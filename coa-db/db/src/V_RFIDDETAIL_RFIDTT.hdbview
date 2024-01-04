@@ -1,0 +1,8 @@
+VIEW "V_RFIDDETAIL_RFIDTT" AS 
+SELECT *,
+  Row_Number() over(
+    PARTITION by Asset_ID,
+    RFID
+    ORDER BY ModifiedAt DESC
+  ) AS rn
+FROM COM_APPLE_COA_T_COA_RFID_TT 

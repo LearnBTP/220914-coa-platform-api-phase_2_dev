@@ -1,0 +1,4 @@
+From GH Site,From Product,From Business Group,AppleID,To GH Site,To Product,To Business Group,MFR,EQ Name,Short Name,Quantity,CM Balance Qty,Comment,CO Balance Approval Status,CO Balance Approved By,Approved/Rejected Date,Created By,Created On,Updated By,Updated On,Validation Errors,CO Type
+iPhone_FXZZ,D10,,00006-01,iPhone_FXZZ,D20,TBG1,Mini-Circuits,"ADAPTER,RF,50 OHM TERM SMA (M),ANNE-50+",TEST-FEB06,1,5,Test,Pending,,,Pooja Lakshman,Jul 10 2023 01:00:02,Pooja Lakshman,Sep 15 2023 06:44:03,,FileUpload
+iPhone_FXZZ,D10,,00006-01,iPhone_FXZZ,D74,TBG1,Mini-Circuits,"ADAPTER,RF,50 OHM TERM SMA (M),ANNE-50+",TEST-FEB06,1,6,Test,Pending,,,Pooja Lakshman,Jul 10 2023 01:00:02,Pooja Lakshman,Sep 15 2023 06:44:03,,FileUpload
+iPhone_FXZZ,D10,,00006-01,iPhone_FXZZ,D73,FATP,Mini-Circuits,"ADAPTER,RF,50 OHM TERM SMA (M),ANNE-50+",TEST-FEB06,0,,Quantity Reset,Pending,,,,Aug 16 2023 16:28:20,Pooja Lakshman,Sep 15 2023 06:44:03,,Non RFID

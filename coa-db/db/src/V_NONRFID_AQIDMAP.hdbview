@@ -1,0 +1,19 @@
+VIEW "V_NONRFID_AQIDMAP" AS (
+  SELECT Raw_Aqid,
+    Cm_Recommendation,
+    Mapped_Aqid,
+    GH_Site,
+    CM,
+    Site,
+    Program,
+    ModifiedAt,
+    Row_Number() over(
+      PARTITION by CM,
+      Site,
+      Raw_Aqid,
+      Program,
+      GH_Site
+      ORDER BY ModifiedAt DESC
+    ) AS rn
+  FROM COM_APPLE_COA_T_COA_AQID_MAPPING
+)

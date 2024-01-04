@@ -1,0 +1,169 @@
+{
+  "role": {
+    "name": "COA_Role2_DI",
+
+    "object_privileges": [
+      {
+        "name": "COM_APPLE_COA_T_COA_AQID_MAIN",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_BOM_STRUCTURE",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_LINE_BRING_UP",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_STATION_SUMMARY",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_LINE_SUMMARY",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_MAIN_LINE",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_SUBLINE",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_AQID_MAPPING",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_RFID_TT",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_3DV_HEADER",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_RFID_ANNOTATION",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_OUTPUT",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_CHANGE_HISTORY",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_GH_SITE_MAPPING",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_NONRFID_TT",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_NONRFID_PROJECTION",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_RFID_UNSCANNABLE_TT",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_NPI_PROGRAM",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_SIMU_RFID",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_SIMU_NONRFID",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_SIMU_CO",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_SIMULATION",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      },
+      {
+        "name": "COM_APPLE_COA_T_COA_SIMULATION_H",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+From GH Site,From Product,From Business Group,AppleID,To GH Site,To Product,To Business Group,CO Type,MFR,EQ Name,Short Name,Quantity,CM Balance Qty,Comment,CO Balance Approval Status,CO Balance Approved By,Approved/Rejected Date,Created By,Created On,Updated By,Updated On,Validation Errors
+iPhone_PGPD,N84,FATP,238569-01,iPhone_FXZZ,D17,FATP,,Radiant,"EQP,TE,IMAGING COLORIMETER,PM-1433F,RADIANT",FEB23-000001,10,0,SEPT26-00010,Pending,,,,Mar 10 2023 19:35:59,Raghav Rathor,Sep 26 2023 00:08:41,
+iPhone_FXZZ,N84,FATP/CSD,238569-01,iPhone_FXZZ,D17,IPHONE,,Radiant,"EQP,TE,IMAGING COLORIMETER,PM-1433F,RADIANT",FEB20-00001,10,0,SEPT26-00010,Approved,Sachin Haibatti,Sep 19 2023 04:26:38,,Mar 10 2023 19:45:31,Sachin Haibatti,Sep 19 2023 04:26:38,
+iPhone_FXZZ,D74,MLB,186834-01,iPhone_FXZZ,D17,FATP,,BOZHON,"EQP,SFHB-109,D6x-D7X,BZ,RETROFIT KIT",,10,0,SEPT26-00010,Pending,,,,Mar 10 2023 19:45:34,Sachin Haibatti,Aug 1 2023 02:37:25,
+iPhone_FXZZ,D74,MLB,61105-01,iPhone_FXZZ,D17,,,BOZHON,"EQP,DISPENSE,BZ Y-DH,BZ",,10,0,SEPT26-00010,Pending,,,,Mar 10 2023 19:45:34,unknown unknown,Aug 4 2023 01:07:48,

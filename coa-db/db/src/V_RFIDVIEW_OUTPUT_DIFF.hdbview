@@ -1,0 +1,29 @@
+VIEW "V_RFIDVIEW_OUTPUT_DIFF" AS
+((SELECT * FROM (SELECT t1.table_cm as from_cm,t1.table_site as from_site,t1.carryoveroldprogram as from_program,t1.table_mapped_aqid as mapped_aqid,t1.to_cm as to_cm,t1.to_site as to_site,t1.to_program as to_program,
+COUNT(*) as rfidViewCount,
+(SELECT SUM(QUANTITY) from COM_APPLE_COA_T_COA_OUTPUT as t2 where
+	t2.from_cm=t1.table_cm and t2.from_site=t1.table_site and t2.from_product=t1.carryoveroldprogram and t2.aqid=t1.table_mapped_aqid and 
+	t2.to_cm=t1.to_cm and t2.to_site=t1.to_site and t2.to_product=t1.to_program and t2.co_type=''
+) as outputCount
+FROM V_RFIDDETAILS as t1 where t1.approval_status='Approved'
+group by t1.table_cm,t1.table_site,t1.carryoveroldprogram,t1.table_mapped_aqid,t1.to_cm,t1.to_site,t1.to_program)
+as t3
+where rfidviewcount is null or outputcount is null
+or (t3.rfidviewcount!=t3.outputcount))
+
+UNION DISTINCT
+
+(SELECT * from (SELECT
+	from_cm,from_site, from_product as from_program,aqid as mapped_aqid,to_cm,to_site,to_product as to_program,
+	(SELECT COUNT(*) FROM V_RFIDDETAILS as t1 where
+		t1.table_cm=t2.from_cm and t1.table_site=t2.from_site 
+		and t1.to_cm=t2.to_cm and t1.to_site=t2.to_site 
+		and t1.table_mapped_aqid=t2.aqid 
+		and t1.carryoveroldprogram=t2.from_product and t1.to_program=t2.to_product
+		and t1.approval_status='Approved'
+	) as rfidviewcount,SUM(quantity) as outputcount
+FROM COM_APPLE_COA_T_COA_OUTPUT as t2
+where t2.co_type=''
+group by aqid, from_cm,from_site, from_product,to_cm,to_site,to_product) as t3
+where rfidviewcount is null or outputcount is null
+or (t3.rfidviewcount!=t3.outputcount)))

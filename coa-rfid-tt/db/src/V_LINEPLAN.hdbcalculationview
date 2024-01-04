@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="V_LINEPLAN" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="V_LINEPLAN"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="COM_APPLE_COA_T_COA_MAIN_LINE">
+    <resourceUri>COM_APPLE_COA_T_COA_MAIN_LINE</resourceUri>
+  </DataSource>
+  <DataSource id="COM_APPLE_COA_T_COA_SUBLINE">
+    <resourceUri>COM_APPLE_COA_T_COA_SUBLINE</resourceUri>
+  </DataSource>
+  <DataSource id="COM_APPLE_COA_T_COA_RFID_TT">
+    <resourceUri>COM_APPLE_COA_T_COA_RFID_TT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="MAINLINE_SUBLINE" cardinality="C1_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="UPH"/>
+      <viewAttribute id="BOH_QTY"/>
+      <viewAttribute id="WORKING_HRS"/>
+      <viewAttribute id="SUB_LINE_NAME"/>
+    
+      <viewAttribute id="REMOTE_SITE_CAP_DEMAND"/>
+      <viewAttribute id="FATP_SUSTAINING_QTY"/>
+      <viewAttribute id="SUBLINE_UPH"/>
+      <viewAttribute id="EFFICIENCY_FIELD"/>
+      <viewAttribute id="DATE_MAINLINE"/>
+      <viewAttribute id="UPLOAD_BY_USER_MAINLINE"/>
+      <viewAttribute id="COMMENT_MAINLINE"/>
+      <viewAttribute id="DATE_SUBLINE"/>
+      <viewAttribute id="UPLOAD_BY_USER_SUBLINE"/>
+      <viewAttribute id="COMMENT_SUBLINE"/>
+      <viewAttribute hidden="true" id="JOIN$SITE$SITE"/>
+      <viewAttribute hidden="true" id="JOIN$PROGRAM$PROGRAM"/>
+      <viewAttribute hidden="true" id="JOIN$CM$CM"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CO_LINE_QTY" datatype="INTEGER" expressionLanguage="SQL">
+        <formula>&quot;BOH_QTY&quot;-ROUND((&quot;FATP_SUSTAINING_QTY&quot;*&quot;UPH&quot;*&quot;WORKING_HRS&quot;*(&quot;EFFICIENCY_FIELD&quot;/100)+&quot;REMOTE_SITE_CAP_DEMAND&quot;)/(&quot;SUBLINE_UPH&quot;*&quot;WORKING_HRS&quot;))</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="COM_APPLE_COA_T_COA_MAIN_LINE">
+      <mapping xsi:type="Calculation:AttributeMapping" target="UPH" source="UPH"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="FATP_SUSTAINING_QTY" source="FATP_SUSTAINING_QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EFFICIENCY_FIELD" source="EFFICIENCY_FIELD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATE_MAINLINE" source="MODIFIEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UPLOAD_BY_USER_MAINLINE" source="MODIFIEDBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMMENT_MAINLINE" source="COMMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+    </input>
+    <input node="COM_APPLE_COA_T_COA_SUBLINE">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BOH_QTY" source="BOH_QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WORKING_HRS" source="WORKING_HRS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SUB_LINE_NAME" source="SUB_LINE_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REMOTE_SITE_CAP_DEMAND" source="REMOTE_SITE_CAP_DEMAND"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SUBLINE_UPH" source="UPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATE_SUBLINE" source="MODIFIEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UPLOAD_BY_USER_SUBLINE" source="MODIFIEDBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMMENT_SUBLINE" source="COMMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+    </input>
+    <joinAttribute name="JOIN$SITE$SITE"/>
+    <joinAttribute name="JOIN$PROGRAM$PROGRAM"/>
+    <joinAttribute name="JOIN$CM$CM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="MAINLINE_SUBLINE_RFID" cardinality="C1_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="UPH"/>
+      <viewAttribute id="BOH_QTY"/>
+      <viewAttribute id="WORKING_HRS"/>
+      <viewAttribute id="SUB_LINE_NAME"/>
+      <viewAttribute id="REMOTE_SITE_CAP_DEMAND"/>
+      <viewAttribute id="FATP_SUSTAINING_QTY"/>
+      <viewAttribute id="SUBLINE_UPH"/>
+      <viewAttribute id="EFFICIENCY_FIELD"/>
+      <viewAttribute id="DATE_MAINLINE"/>
+      <viewAttribute id="UPLOAD_BY_USER_MAINLINE"/>
+      <viewAttribute id="COMMENT_MAINLINE"/>
+      <viewAttribute id="DATE_SUBLINE"/>
+      <viewAttribute id="UPLOAD_BY_USER_SUBLINE"/>
+      <viewAttribute id="COMMENT_SUBLINE"/>
+      <viewAttribute id="CO_LINE_QTY"/>
+      <viewAttribute id="RFID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MAINLINE_SUBLINE">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UPH" source="UPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BOH_QTY" source="BOH_QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WORKING_HRS" source="WORKING_HRS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SUB_LINE_NAME" source="SUB_LINE_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REMOTE_SITE_CAP_DEMAND" source="REMOTE_SITE_CAP_DEMAND"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FATP_SUSTAINING_QTY" source="FATP_SUSTAINING_QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SUBLINE_UPH" source="SUBLINE_UPH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EFFICIENCY_FIELD" source="EFFICIENCY_FIELD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATE_MAINLINE" source="DATE_MAINLINE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UPLOAD_BY_USER_MAINLINE" source="UPLOAD_BY_USER_MAINLINE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMMENT_MAINLINE" source="COMMENT_MAINLINE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATE_SUBLINE" source="DATE_SUBLINE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UPLOAD_BY_USER_SUBLINE" source="UPLOAD_BY_USER_SUBLINE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMMENT_SUBLINE" source="COMMENT_SUBLINE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CO_LINE_QTY" source="CO_LINE_QTY"/>
+    </input>
+    <input node="COM_APPLE_COA_T_COA_RFID_TT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="RFID" source="RFID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="CM_PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SUB_LINE_NAME" source="LINE_TYPE"/>
+    </input>
+    <joinAttribute name="SITE"/>
+    <joinAttribute name="PROGRAM"/>
+    <joinAttribute name="CM"/>
+    <joinAttribute name="SUB_LINE_NAME"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_2">
+    <viewAttributes>
+      <viewAttribute id="SITE" transparentFilter="true"/>
+      <viewAttribute id="PROGRAM" transparentFilter="true"/>
+      <viewAttribute id="CM" transparentFilter="true"/>
+      <viewAttribute id="UPH"/>
+      <viewAttribute id="BOH_QTY"/>
+      <viewAttribute id="WORKING_HRS"/>
+      <viewAttribute id="SUB_LINE_NAME" transparentFilter="true"/>
+      <viewAttribute id="REMOTE_SITE_CAP_DEMAND"/>
+      <viewAttribute id="FATP_SUSTAINING_QTY"/>
+      <viewAttribute id="SUBLINE_UPH"/>
+      <viewAttribute id="EFFICIENCY_FIELD"/>
+      <viewAttribute id="DATE_MAINLINE"/>
+      <viewAttribute id="UPLOAD_BY_USER_MAINLINE"/>
+      <viewAttribute id="COMMENT_MAINLINE"/>
+      <viewAttribute id="DATE_SUBLINE"/>
+      <viewAttribute id="UPLOAD_BY_USER_SUBLINE"/>
+      <viewAttribute id="COMMENT_SUBLINE"/>
+      <viewAttribute id="CO_LINE_QTY"/>
+      <viewAttribute id="RFID" aggregationType="count"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="MAINLINE_SUBLINE_RFID"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Aggregation_2">
+  <attributes>
+    <attribute id="SITE" order="1" displayAttribute="false" attributeHierarchyActive="false" transparentFilter="true">
+      <descriptions defaultDescription="SITE"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="SITE"/>
+    </attribute>
+    <attribute id="PROGRAM" order="2" displayAttribute="false" attributeHierarchyActive="false" transparentFilter="true">
+      <descriptions defaultDescription="PROGRAM"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="PROGRAM"/>
+    </attribute>
+    <attribute id="CM" order="3" displayAttribute="false" attributeHierarchyActive="false" transparentFilter="true">
+      <descriptions defaultDescription="CM"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="CM"/>
+    </attribute>
+    <attribute id="SUB_LINE_NAME" order="4" displayAttribute="false" attributeHierarchyActive="false" transparentFilter="true">
+      <descriptions defaultDescription="SUB_LINE_NAME"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="SUB_LINE_NAME"/>
+    </attribute>
+    <attribute id="UPH" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UPH"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="UPH"/>
+    </attribute>
+    <attribute id="BOH_QTY" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BOH_QTY"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="BOH_QTY"/>
+    </attribute>
+    <attribute id="WORKING_HRS" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WORKING_HRS"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="WORKING_HRS"/>
+    </attribute>
+    <attribute id="REMOTE_SITE_CAP_DEMAND" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REMOTE_SITE_CAP_DEMAND"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="REMOTE_SITE_CAP_DEMAND"/>
+    </attribute>
+    <attribute id="FATP_SUSTAINING_QTY" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FATP_SUSTAINING_QTY"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="FATP_SUSTAINING_QTY"/>
+    </attribute>
+    <attribute id="SUBLINE_UPH" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SUBLINE_UPH"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="SUBLINE_UPH"/>
+    </attribute>
+    <attribute id="EFFICIENCY_FIELD" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EFFICIENCY_FIELD"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="EFFICIENCY_FIELD"/>
+    </attribute>
+    <attribute id="CO_LINE_QTY" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CO_LINE_QTY"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="CO_LINE_QTY"/>
+    </attribute>
+    <attribute id="RFID" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RFID"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="RFID"/>
+    </attribute>
+    <attribute id="DATE_MAINLINE" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATE_MAINLINE"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="DATE_MAINLINE"/>
+    </attribute>
+    <attribute id="UPLOAD_BY_USER_MAINLINE" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UPLOAD_BY_USER_MAINLINE"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="UPLOAD_BY_USER_MAINLINE"/>
+    </attribute>
+    <attribute id="COMMENT_MAINLINE" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMMENT_MAINLINE"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="COMMENT_MAINLINE"/>
+    </attribute>
+    <attribute id="DATE_SUBLINE" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATE_SUBLINE"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="DATE_SUBLINE"/>
+    </attribute>
+    <attribute id="UPLOAD_BY_USER_SUBLINE" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UPLOAD_BY_USER_SUBLINE"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="UPLOAD_BY_USER_SUBLINE"/>
+    </attribute>
+    <attribute id="COMMENT_SUBLINE" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMMENT_SUBLINE"/>
+      <keyMapping columnObjectName="Aggregation_2" columnName="COMMENT_SUBLINE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="100" y="105"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="MAINLINE_SUBLINE" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="107" y="443"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="COM_APPLE_COA_T_COA_MAIN_LINE" modelObjectNameSpace="MAINLINE_SUBLINE" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="476" y="31"/>
+      <rectangleSize width="290"/>
+    </shape>
+    <shape modelObjectName="COM_APPLE_COA_T_COA_SUBLINE" modelObjectNameSpace="MAINLINE_SUBLINE" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="74" y="31"/>
+      <rectangleSize width="278"/>
+    </shape>
+    <shape expanded="true" modelObjectName="MAINLINE_SUBLINE_RFID" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="107" y="321"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="MAINLINE_SUBLINE" modelObjectNameSpace="MAINLINE_SUBLINE_RFID" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="-67" y="52"/>
+      <rectangleSize width="181"/>
+    </shape>
+    <shape modelObjectName="COM_APPLE_COA_T_COA_RFID_TT" modelObjectNameSpace="MAINLINE_SUBLINE_RFID" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="275"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="107" y="205"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

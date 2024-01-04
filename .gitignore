@@ -1,0 +1,63 @@
+
+# auto generated wildcard
+coa-rfid-unscannable/db/.env
+# auto generated wildcard
+coa-db/db/.env
+# auto generated wildcard
+coa-changelog/db/.env
+coa-nonrfid-tt/db/.env
+
+# auto generated wildcard
+coa-lineplan/db/.env
+# auto generated wildcard
+coa-lineplan/.env2
+# auto generated wildcard
+coa-changelog/db/.env
+# auto generated wildcard
+coa-changelog/.env2
+# auto generated wildcard
+coa-output/.env1
+# auto generated wildcard
+coa-db/.env1
+# auto generated wildcard
+coa-rfid-tt/.env1
+# auto generated wildcard
+coa-db/db/.env
+# auto generated wildcard
+coa-db/.envundefined
+# auto generated wildcard
+coa-rfid-tt/.env2
+# auto generated wildcard
+coa-lineplan/.env3
+# auto generated wildcard
+coa-changelog/.env1
+# auto generated wildcard
+coa_3dv_line/.env2
+# auto generated wildcard
+coa-nonrfid-tt/.env1
+# auto generated wildcard
+coa-rfid-unscannable/.env1
+# auto generated wildcard
+coa-npi_program/.env1
+# auto generated wildcard
+coa-nonrfid-projection/.env1
+# auto generated wildcard
+coa_3dv_line/.env1
+# auto generated wildcard
+coa-output/db/.env
+# auto generated wildcard
+coa_3dv_line/.env4
+# auto generated wildcard
+coa-nonrfid-projection/.env2
+# auto generated wildcard
+test.http
+# auto generated wildcard
+coa_3dv_line/db/.env
+# auto generated wildcard
+coa_3dv_line/.env
+# auto generated wildcard
+coa-lineplan/.env1
+# auto generated wildcard
+coa-nonrfid-projection/.env4
+# auto generated wildcard
+coa-db/.env3

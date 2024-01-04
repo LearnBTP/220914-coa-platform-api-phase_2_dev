@@ -1,0 +1,6 @@
+CM,Site,Program,Sub_Line_Name,Uph,boH_Qty,Working_Hrs,Remote_Site_Cap_Demand,Version,Date,Upload_By_User,Comment
+BD03,NEWS,D4A,1,0,0,0,,,,,
+BD03,Test,J137 FATP TOOLING,1,0,0,0,,,,,
+bd03,NEWS,J137 FATP TOOLING,10,0,0,0,,,,,test
+CM,ELKGROVE,D42,1,0,0,0,,,,,
+BD03,NEWS,J137 FATP TOOLING,6,0,0,0,,,,,

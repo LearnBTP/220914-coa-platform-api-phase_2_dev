@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="V_AQID_DATA" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="V_AQID_DATA"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="COM_APPLE_COA_T_COA_AQID_MAPPING">
+    <resourceUri>COM_APPLE_COA_T_COA_AQID_MAPPING</resourceUri>
+  </DataSource>
+  <DataSource id="Join_2$$$$COM_APPLE_COA_T_COA_AQID_MAPPING$$">
+    <resourceUri>COM_APPLE_COA_T_COA_AQID_MAPPING</resourceUri>
+  </DataSource>
+  <DataSource id="COM_APPLE_COA_T_COA_AQID_MAIN">
+    <resourceUri>COM_APPLE_COA_T_COA_AQID_MAIN</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="MAKE_AQID"/>
+      <viewAttribute id="MODIFIEDAT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="COM_APPLE_COA_T_COA_AQID_MAPPING"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_2">
+    <viewAttributes>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="MAKE_AQID"/>
+      <viewAttribute id="MODIFIEDAT" aggregationType="max"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Projection_1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="MAKE_AQID"/>
+      <viewAttribute id="MAPPED_AQID_Temp"/>
+      <viewAttribute id="CM_RECOMMENDATION"/>
+      <viewAttribute id="EQUIPMENT_NAME"/>
+      <viewAttribute id="MFR"/>
+      <viewAttribute hidden="true" id="JOIN$CM$CM"/>
+      <viewAttribute hidden="true" id="JOIN$SITE$SITE"/>
+      <viewAttribute hidden="true" id="JOIN$PROGRAM$PROGRAM"/>
+      <viewAttribute hidden="true" id="JOIN$MAKE_AQID$MAKE_AQID"/>
+      <viewAttribute hidden="true" id="JOIN$MODIFIEDAT$MODIFIEDAT"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="MAPPED_AQID" datatype="NVARCHAR" length="18" expressionLanguage="SQL">
+        <formula>CASE &quot;CM_RECOMMENDATION&quot; 
+	 WHEN '' then &quot;MAPPED_AQID_Temp&quot; 
+	 WHEN NULL then &quot;MAPPED_AQID_Temp&quot; 
+	 ELSE &quot;CM_RECOMMENDATION&quot; 
+ END</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Aggregation_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAKE_AQID" source="MAKE_AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MAKE_AQID$MAKE_AQID" source="MAKE_AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MODIFIEDAT$MODIFIEDAT" source="MODIFIEDAT"/>
+    </input>
+    <input node="Join_2$$$$COM_APPLE_COA_T_COA_AQID_MAPPING$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAPPED_AQID_Temp" source="MAPPED_AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM_RECOMMENDATION" source="CM_RECOMMENDATION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIPMENT_NAME" source="EQUIPMENT_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MFR" source="MFR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MAKE_AQID$MAKE_AQID" source="MAKE_AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MODIFIEDAT$MODIFIEDAT" source="MODIFIEDAT"/>
+    </input>
+    <joinAttribute name="JOIN$CM$CM"/>
+    <joinAttribute name="JOIN$SITE$SITE"/>
+    <joinAttribute name="JOIN$PROGRAM$PROGRAM"/>
+    <joinAttribute name="JOIN$MAKE_AQID$MAKE_AQID"/>
+    <joinAttribute name="JOIN$MODIFIEDAT$MODIFIEDAT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="EQUIPMENT_NAME"/>
+      <viewAttribute id="MFR"/>
+      <viewAttribute id="PO_TYPE"/>
+      <viewAttribute id="CONSUMABLES"/>
+    
+      <viewAttribute id="MAPPED_AQID"/>
+      <viewAttribute hidden="true" id="JOIN$CM$CM"/>
+      <viewAttribute hidden="true" id="JOIN$PROGRAM$PROGRAM"/>
+      <viewAttribute hidden="true" id="JOIN$SITE$SITE"/>
+      <viewAttribute hidden="true" id="JOIN$MAKE_AQID$AQID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="MAKE_AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIPMENT_NAME" source="EQUIPMENT_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MFR" source="MFR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAPPED_AQID" source="MAPPED_AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MAKE_AQID$AQID" source="MAKE_AQID"/>
+    </input>
+    <input node="COM_APPLE_COA_T_COA_AQID_MAIN">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_TYPE" source="PO_TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONSUMABLES" source="CONSUMABLES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MAKE_AQID$AQID" source="AQID"/>
+    </input>
+    <joinAttribute name="JOIN$CM$CM"/>
+    <joinAttribute name="JOIN$PROGRAM$PROGRAM"/>
+    <joinAttribute name="JOIN$SITE$SITE"/>
+    <joinAttribute name="JOIN$MAKE_AQID$AQID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="Mapped_AQID" aggregationType="max"/>
+      <viewAttribute id="EQUIPMENT_NAME" aggregationType="max"/>
+      <viewAttribute id="MFR" aggregationType="max"/>
+      <viewAttribute id="PO_TYPE" aggregationType="max"/>
+      <viewAttribute id="CONSUMABLES" aggregationType="max"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Mapped_AQID" source="MAPPED_AQID"/>
+    </input>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Aggregation_1">
+  <attributes>
+    <attribute id="CM" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="CM"/>
+    </attribute>
+    <attribute id="SITE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SITE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="SITE"/>
+    </attribute>
+    <attribute id="PROGRAM" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PROGRAM"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="PROGRAM"/>
+    </attribute>
+    <attribute id="AQID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MAKE_AQID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="AQID"/>
+    </attribute>
+    <attribute id="Mapped_AQID" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Mapped_AQID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="Mapped_AQID"/>
+    </attribute>
+    <attribute id="EQUIPMENT_NAME" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EQUIPMENT_NAME"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="EQUIPMENT_NAME"/>
+    </attribute>
+    <attribute id="MFR" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MFR"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="MFR"/>
+    </attribute>
+    <attribute id="PO_TYPE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO_TYPE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="PO_TYPE"/>
+    </attribute>
+    <attribute id="CONSUMABLES" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CONSUMABLES"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="CONSUMABLES"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="107" y="709"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="616"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="107" y="492"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Aggregation_2" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="153"/>
+    </shape>
+    <shape modelObjectName="COM_APPLE_COA_T_COA_AQID_MAPPING" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="318"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="360"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="-43" y="123"/>
+      <rectangleSize width="215"/>
+    </shape>
+  
+    <shape modelObjectName="COM_APPLE_COA_T_COA_AQID_MAIN" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="342" y="131"/>
+      <rectangleSize width="293"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="231"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

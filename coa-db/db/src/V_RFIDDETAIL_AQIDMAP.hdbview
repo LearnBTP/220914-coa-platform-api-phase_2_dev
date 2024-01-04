@@ -1,0 +1,21 @@
+VIEW "V_RFIDDETAIL_AQIDMAP" AS
+(SELECT 
+			Raw_Aqid AS Raw_Aqid,
+			Cm_Recommendation AS Cm_Recommendation,
+			Mapped_Aqid AS Mapped_Aqid,
+			Short_Name AS Short_Name,
+			Equipment_Name AS Equipment_Name,
+			MFR AS MFR,
+			Make_Aqid AS Make_Aqid,
+			CM AS CM,
+			Site AS Site,
+			Program AS Program,
+			SAP_CM_Site,
+			ModifiedAt,
+			Row_Number() OVER( PARTITION BY 
+			CM,
+			Site,
+			Make_Aqid,
+			Program,
+			SAP_CM_Site ORDER BY ModifiedAt desc ) AS rn
+		FROM COM_APPLE_COA_T_COA_AQID_MAPPING) 

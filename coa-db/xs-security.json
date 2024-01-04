@@ -1,0 +1,292 @@
+{
+    "xsappname": "zcoa_xsuaa",
+    "tenant-mode": "dedicated",
+    "description": "Security profile for Carryover application",
+    "authorities": [
+        "$ACCEPT_GRANTED_AUTHORITIES"
+    ],
+    "foreign-scope-references": [
+        "$XSAPPNAME(application,coa-changelog-srv).AnnotationModify"
+    ],
+    "scopes": [
+        {
+            "name": "$XSAPPNAME.AnnotationReadOnly",
+            "description": "Annotation UI Read only access"
+        },
+        {
+            "name": "$XSAPPNAME.AnnotationModify",
+            "description": "Annotation UI read/edit access"
+        },
+        {
+            "name": "$XSAPPNAME.AqidReadOnly",
+            "description": "AQID Mapping UI read only access"
+        },
+        {
+            "name": "$XSAPPNAME.AqidModify",
+            "description": "AQID Mapping UI read/edit access"
+        },
+        {
+            "name": "$XSAPPNAME.RfidOnHandTTReadOnly",
+            "description": "Transfer Tracker UI read only access"
+        },
+        {
+            "name": "$XSAPPNAME.RfidOnHandTTModify",
+            "description": "Transfer Tracker UI read/edit access"
+        },
+        {
+            "name": "$XSAPPNAME.MainLineReadOnly",
+            "description": "Main Line UI read only access"
+        },
+        {
+            "name": "$XSAPPNAME.MainLineModify",
+            "description": "Main Line UI read/edit access"
+        },
+        {
+            "name": "$XSAPPNAME.SubLineReadOnly",
+            "description": "Sub Line UI read only access"
+        },
+        {
+            "name": "$XSAPPNAME.SubLineModify",
+            "description": "Sub Line UI read/edit access"
+        },
+        {
+            "name": "$XSAPPNAME.LinePlanReadOnly",
+            "description": "Line Plan UI read only access"
+        },
+        {
+            "name": "$XSAPPNAME.COOutputReadOnly",
+            "description": "Carry Over o/p UI read only access"
+        },
+        {
+            "name": "$XSAPPNAME.COOutputModify",
+            "description": "Carry Over o/p UI read/edit access"
+        },
+        {
+            "name": "$XSAPPNAME.ApproveRfidOnHandTT",
+            "description": "Approve access for RFID on Hand Transfer tracker"
+        },
+        {
+            "name": "$XSAPPNAME.ApproveCoOutput",
+            "description": "Approve access for Carryover Output"
+        },
+        {
+            "name": "$XSAPPNAME.ProjectionTableReadOnly",
+            "description": "Non RFID Projection Read only access"
+        },
+        {
+            "name": "$XSAPPNAME.nonRFIDTTReadOnly",
+            "description": "Non RFID Transfer Tracker Read only access"
+        },
+        {
+            "name": "$XSAPPNAME.UnScannableReadOnly",
+            "description": "UnScannable Read only access"
+        },
+        {
+            "name": "$XSAPPNAME.LineSimulationReadOnly",
+            "description": "Line Simulation Read only access"
+        },
+        {
+            "name": "$XSAPPNAME.ProjectionTableModify",
+            "description": "Non RFID Projection edit/read access"
+        },
+        {
+            "name": "$XSAPPNAME.nonRFIDTTModify",
+            "description": "Non RFID Transfer Tracker edit/read access"
+        },
+        {
+            "name": "$XSAPPNAME.UnScannableModify",
+            "description": "Unscannable edit/read access"
+        },
+        {
+            "name": "$XSAPPNAME.LineSimulationModify",
+            "description": "Line Simulation edit/read access"
+        },
+        {
+            "name": "$XSAPPNAME.NPIProgramModify",
+            "description": "NPI Program edit/read access"
+        },
+        {
+            "name": "$XSAPPNAME.SyncActionAll",
+            "description": "Access to enable all Sync Actions"
+        },
+        {
+            "name": "$XSAPPNAME.JobScheduler",
+            "description": "Job Scheduler",
+            "grant-as-authority-to-apps": [
+                "$XSSERVICENAME(coa-jobs)"
+            ]
+        }
+    ],
+    "attributes": [
+        {
+            "name": "CM",
+            "description": "Contract Manufacturer",
+            "valueType": "string"
+        },
+        {
+            "name": "Site",
+            "description": "Site",
+            "valueType": "string"
+        }
+    ],
+    "role-templates": [
+        {
+            "name": "COA_READ_ALL_T",
+            "description": "Read access to all the applications",
+            "scope-references": [
+                "$XSAPPNAME.AnnotationReadOnly",
+                "$XSAPPNAME.AqidReadOnly",
+                "$XSAPPNAME.RfidOnHandTTReadOnly",
+                "$XSAPPNAME.MainLineReadOnly",
+                "$XSAPPNAME.SubLineReadOnly",
+                "$XSAPPNAME.LinePlanReadOnly",
+                "$XSAPPNAME.COOutputReadOnly",
+                "$XSAPPNAME.ProjectionTableReadOnly",
+                "$XSAPPNAME.UnScannableReadOnly",
+                "$XSAPPNAME.nonRFIDTTReadOnly",
+                "$XSAPPNAME.LineSimulationReadOnly"
+            ],
+            "attribute-references": [
+                "CM",
+                "Site"
+            ]
+        },
+        {
+            "name": "COA_APPROVE_ALL_T",
+            "description": "Approve access for all applications",
+            "scope-references": [
+                "$XSAPPNAME.ApproveRfidOnHandTT",
+                "$XSAPPNAME.ApproveCoOutput"
+            ],
+            "attribute-references": [
+                "CM",
+                "Site"
+            ]
+        },
+        {
+            "name": "COA_MODIFY_ALL_T",
+            "description": "Modify access for all applications",
+            "scope-references": [
+                "$XSAPPNAME.AnnotationModify",
+                "$XSAPPNAME.AqidModify",
+                "$XSAPPNAME.RfidOnHandTTModify",
+                "$XSAPPNAME.MainLineModify",
+                "$XSAPPNAME.SubLineModify",
+                "$XSAPPNAME.COOutputModify",
+                "$XSAPPNAME.ProjectionTableModify",
+                "$XSAPPNAME.nonRFIDTTModify",
+                "$XSAPPNAME.UnScannableModify",
+                "$XSAPPNAME.LineSimulationModify"
+            ],
+            "attribute-references": [
+                "CM",
+                "Site"
+            ]
+        },
+        {
+            "name": "COA_FLOOR_ANNOTATION_READ_T",
+            "description": "Read only access for Annotation and CO o/p",
+            "scope-references": [
+                "$XSAPPNAME.AnnotationReadOnly",
+                "$XSAPPNAME.COOutputReadOnly"
+            ],
+            "attribute-references": [
+                "CM",
+                "Site"
+            ]
+        },
+        {
+            "name": "COA_FLOOR_ANNOTATION_MODIFY_T",
+            "description": "Modify access for Annotation and CO o/p",
+            "scope-references": [
+                "$XSAPPNAME.AnnotationModify",
+                "$XSAPPNAME.COOutputModify"
+            ],
+            "attribute-references": [
+                "CM",
+                "Site"
+            ]
+        },
+        {
+            "name": "COA_ADMIN_T",
+            "description": "COA Admin access",
+            "scope-references": [
+                "$XSAPPNAME.AnnotationModify",
+                "$XSAPPNAME.AqidModify",
+                "$XSAPPNAME.RfidOnHandTTModify",
+                "$XSAPPNAME.MainLineModify",
+                "$XSAPPNAME.SubLineModify",
+                "$XSAPPNAME.COOutputModify",
+                "$XSAPPNAME.ProjectionTableModify",
+                "$XSAPPNAME.nonRFIDTTModify",
+                "$XSAPPNAME.UnScannableModify",
+                "$XSAPPNAME.LineSimulationModify",
+                "$XSAPPNAME.NPIProgramModify",
+                "$XSAPPNAME.ApproveRfidOnHandTT",
+                "$XSAPPNAME.ApproveCoOutput",
+                "$XSAPPNAME.SyncActionAll"
+            ],
+            "attribute-references": [
+                "CM",
+                "Site"
+            ]
+        },
+        {
+            "name": "IST_COA_READ_ALL_T",
+            "description": "Read access to all the applications",
+            "scope-references": [
+                "$XSAPPNAME.AnnotationReadOnly",
+                "$XSAPPNAME.AqidReadOnly",
+                "$XSAPPNAME.RfidOnHandTTReadOnly",
+                "$XSAPPNAME.MainLineReadOnly",
+                "$XSAPPNAME.SubLineReadOnly",
+                "$XSAPPNAME.LinePlanReadOnly",
+                "$XSAPPNAME.COOutputReadOnly",
+                "$XSAPPNAME.ProjectionTableReadOnly",
+                "$XSAPPNAME.UnScannableReadOnly",
+                "$XSAPPNAME.nonRFIDTTReadOnly",
+                "$XSAPPNAME.LineSimulationReadOnly",
+                "$XSAPPNAME.SyncActionAll"
+            ],
+            "attribute-references": [
+                "CM",
+                "Site"
+            ]
+        },
+        {
+            "name": "IST_COA_MODIFY_AND_APPROVE_ALL_T",
+            "description": "Modify access for all applications",
+            "scope-references": [
+                "$XSAPPNAME.AnnotationModify",
+                "$XSAPPNAME.AqidModify",
+                "$XSAPPNAME.RfidOnHandTTModify",
+                "$XSAPPNAME.MainLineModify",
+                "$XSAPPNAME.SubLineModify",
+                "$XSAPPNAME.COOutputModify",
+                "$XSAPPNAME.ApproveRfidOnHandTT",
+                "$XSAPPNAME.ApproveCoOutput",
+                "$XSAPPNAME.ProjectionTableModify",
+                "$XSAPPNAME.nonRFIDTTModify",
+                "$XSAPPNAME.UnScannableModify",
+                "$XSAPPNAME.LineSimulationModify",
+                "$XSAPPNAME.NPIProgramModify",
+                "$XSAPPNAME.SyncActionAll"
+            ],
+            "attribute-references": [
+                "CM",
+                "Site"
+            ]
+        }
+    ],
+    "oauth2-configuration": {
+        "redirect-uris": [
+            "https://coa-dev-cp.corp.apple.com/**",
+            "https://coa-uat-cp.corp.apple.com/**",
+            "https://coa-cp.corp.apple.com/**"
+        ],
+        "allowedproviders": [
+            "corp-apps"
+        ],
+        "token-validity": 1800
+    }
+}

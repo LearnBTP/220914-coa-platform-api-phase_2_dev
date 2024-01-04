@@ -1,0 +1,95 @@
+{
+  "name": "coa-lineplan",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap-cloud-sdk/core": "^1.54.2",
+    "@sap/cds": "6.7.2",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.7",
+    "@sap/hana-client": "^2.14.18",
+    "@sap/xsenv": "^3.3.2",
+    "@sap/xssec": "^3.2.13",
+    "axios": "^0.27.2",
+    "csv-parser": "^3.0.0",
+    "express": "^4",
+    "hdb": "^0.19.5",
+    "jwt-decode": "^3.1.2",
+    "nyc": "^15.1.0",
+    "passport": "^0.6.0",
+    "sap-cf-axios": "^0.3.6"
+  },
+  "overrides": {
+    "@sap-cloud-sdk/core": {
+      "jsonwebtoken": "^9.0.2"
+    }
+  },
+  "scripts": {
+    "test": "NODE_ENV='test' nyc --reporter=lcov --reporter=text-lcov mocha tests/test.js --timeout 30000 --exit",
+    "testl": "nyc mocha tests/test.js --timeout 30000 --exit",
+    "start": "cds run"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es2020": true,
+      "node": true,
+      "jest": true,
+      "mocha": true
+    },
+    "globals": {
+      "SELECT": true,
+      "INSERT": true,
+      "UPDATE": true,
+      "DELETE": true,
+      "CREATE": true,
+      "DROP": true,
+      "CDL": true,
+      "CQL": true,
+      "CXL": true,
+      "cds": true
+    },
+    "rules": {
+      "no-console": "off",
+      "require-atomic-updates": "off"
+    }
+  },
+  "cds": {
+    "build": {
+      "tasks": [
+        {
+          "for": "hana",
+          "dest": "../db"
+        },
+        {
+          "for": "node-cf"
+        }
+      ]
+    },
+    "hana": {
+      "deploy-format": "hdbtable"
+    },
+    "requires": {
+      "db": {
+        "kind": "hana-cloud"
+      },
+      "uaa": {
+        "kind": "xsuaa"
+      }
+    },
+    "features": {
+      "kibana_formatter": true
+    }
+  },
+  "devDependencies": {
+    "@sap/hdi-deploy": "^4.8.0",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.2.0"
+  },
+  "engines": {
+    "node": "^18.0.0 || ^20.0.0"
+  }
+}

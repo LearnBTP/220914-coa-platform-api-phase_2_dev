@@ -1,0 +1,181 @@
+{
+    "xsappname": "zcoa_xsuaa_ext",
+    "tenant-mode": "dedicated",
+    "description": "Security profile for Carryover application - External",
+    "scopes": [
+        {
+            "name": "$XSAPPNAME.AnnotationReadOnly",
+            "description": "Annotation UI Read only access"
+        },
+        {
+            "name": "$XSAPPNAME.AnnotationModify",
+            "description": "Annotation UIa read/edit access"
+        },
+        {
+            "name": "$XSAPPNAME.AqidReadOnly",
+            "description": "AQID Mapping UI read only access"
+        },
+        {
+            "name": "$XSAPPNAME.AqidModify",
+            "description": "AQID Mapping UI read/edit access"
+        },
+        {
+            "name": "$XSAPPNAME.RfidOnHandTTReadOnly",
+            "description": "Transfer Tracker UI read only access"
+        },
+        {
+            "name": "$XSAPPNAME.RfidOnHandTTModify",
+            "description": "Transfer Tracker UI read/edit access"
+        },
+        {
+            "name": "$XSAPPNAME.MainLineReadOnly",
+            "description": "Main Line UI read only access"
+        },
+        {
+            "name": "$XSAPPNAME.MainLineModify",
+            "description": "Main Line UI read/edit access"
+        },
+        {
+            "name": "$XSAPPNAME.SubLineReadOnly",
+            "description": "Sub Line UI read only access"
+        },
+        {
+            "name": "$XSAPPNAME.SubLineModify",
+            "description": "Sub Line UI read/edit access"
+        },
+        {
+            "name": "$XSAPPNAME.LinePlanReadOnly",
+            "description": "Line Plan UI read only access"
+        },
+        {
+            "name": "$XSAPPNAME.COOutputReadOnly",
+            "description": "Carry Over o/p UI read only access"
+        },
+        {
+            "name": "$XSAPPNAME.ProjectionTableReadOnly",
+            "description": "Non RFID Projection Read only access"
+        },
+        {
+            "name": "$XSAPPNAME.nonRFIDTTReadOnly",
+            "description": "Non RFID Transfer Tracker Read only access"
+        },
+        {
+            "name": "$XSAPPNAME.UnScannableReadOnly",
+            "description": "UnScannable Read only access"
+        },
+        {
+            "name": "$XSAPPNAME.LineSimulationReadOnly",
+            "description": "Line Simulation Read only access"
+        },
+        {
+            "name": "$XSAPPNAME.ProjectionTableModify",
+            "description": "Non RFID Projection edit/read access"
+        },
+        {
+            "name": "$XSAPPNAME.nonRFIDTTModify",
+            "description": "Non RFID Transfer Tracker edit/read access"
+        },
+        {
+            "name": "$XSAPPNAME.UnScannableModify",
+            "description": "Unscannable edit/read access"
+        },
+        {
+            "name": "$XSAPPNAME.LineSimulationModify",
+            "description": "Line Simulation edit/read access"
+        },
+        {
+            "name": "$XSAPPNAME.COOutputModify",
+            "description": "Carry Over o/p UI read/edit access"
+        }
+    ],
+    "attributes": [
+        {
+            "name": "CM",
+            "description": "Contract Manufacturer",
+            "valueType": "string"
+        },
+        {
+            "name": "Site",
+            "description": "Site",
+            "valueType": "string"
+        }
+    ],
+    "role-templates": [
+        {
+            "name": "COA_READ_ALL_EXT_T",
+            "description": "Read access to all the applications - External",
+            "scope-references": [
+                "$XSAPPNAME.AnnotationReadOnly",
+                "$XSAPPNAME.AqidReadOnly",
+                "$XSAPPNAME.RfidOnHandTTReadOnly",
+                "$XSAPPNAME.MainLineReadOnly",
+                "$XSAPPNAME.SubLineReadOnly",
+                "$XSAPPNAME.LinePlanReadOnly",
+                "$XSAPPNAME.COOutputReadOnly",
+                "$XSAPPNAME.ProjectionTableReadOnly",
+                "$XSAPPNAME.UnScannableReadOnly",
+                "$XSAPPNAME.nonRFIDTTReadOnly",
+                "$XSAPPNAME.LineSimulationReadOnly"
+            ],
+            "attribute-references": [
+                "CM",
+                "Site"
+            ]
+        },
+        {
+            "name": "COA_MODIFY_ALL_EXT_T",
+            "description": "Modify access for all applications - External",
+            "scope-references": [
+                "$XSAPPNAME.AnnotationModify",
+                "$XSAPPNAME.AqidModify",
+                "$XSAPPNAME.RfidOnHandTTModify",
+                "$XSAPPNAME.MainLineModify",
+                "$XSAPPNAME.SubLineModify",
+                "$XSAPPNAME.COOutputModify",
+                "$XSAPPNAME.ProjectionTableModify",
+                "$XSAPPNAME.nonRFIDTTModify",
+                "$XSAPPNAME.UnScannableModify",
+                "$XSAPPNAME.LineSimulationModify"
+            ],
+            "attribute-references": [
+                "CM",
+                "Site"
+            ]
+        },
+        {
+            "name": "COA_FLOOR_ANNOTATION_READ_EXT_T",
+            "description": "Read only access for Annotation and CO o/p - External",
+            "scope-references": [
+                "$XSAPPNAME.AnnotationReadOnly",
+                "$XSAPPNAME.COOutputReadOnly"
+            ],
+            "attribute-references": [
+                "CM",
+                "Site"
+            ]
+        },
+        {
+            "name": "COA_FLOOR_ANNOTATION_MODIFY_EXT_T",
+            "description": "Modify access for Annotation and CO o/p - External",
+            "scope-references": [
+                "$XSAPPNAME.AnnotationModify",
+                "$XSAPPNAME.COOutputModify"
+            ],
+            "attribute-references": [
+                "CM",
+                "Site"
+            ]
+        }
+    ],
+    "oauth2-configuration": {
+        "redirect-uris": [
+            "https://coa-dev-cp.sap.apple.com/**",
+            "https://coa-uat-cp.sap.apple.com/**",
+            "https://coa-cp.sap.apple.com/**"
+        ],
+        "allowedproviders": [
+            "noncorp-apps"
+        ],
+        "token-validity": 1800
+    }
+}

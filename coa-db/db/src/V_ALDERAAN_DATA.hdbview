@@ -1,0 +1,46 @@
+VIEW "V_ALDERAAN_DATA"
+AS SELECT assets.ASSET_ID,
+          assets.RFID,
+          assets.APPLE_ID,
+          assets.SERIAL_NUMBER,
+          assets.MODEL_NUMBER,
+          CASE assets.ASSET_STATE
+            WHEN 1 THEN '1 ENROLLED (IUSE)'
+            WHEN 4 THEN '4 OFFSITE_REPAIR (REPR)'
+            WHEN 5 THEN '5 BROKEN (BRKN)'
+            WHEN 6 THEN '6 RELEASED_TO_ART (SPLS)'
+            WHEN 7 THEN '7 VERIFIED_MISSING (MISS)'
+            WHEN 8 THEN '8 TRANSFER (TRAN)'
+            WHEN 9 THEN '9 SOLD (hidden)'
+            WHEN 10 THEN '10 SCRAP (hidden)'
+            WHEN 12 THEN '12 IDLE'
+            END as ASSET_STATE ,
+          assets.SAP_EQ_NUMBER,
+          assets.CM_DEPT,
+          assets.CM_PROGRAM,
+          assets.ASSET_OWNERSHIP,
+          assets.ENROLLMENT_TS,
+          assets.LAST_UPDATE_TS as LATEST_UPDATE_TS,
+          cm.CM_ID,
+          cm.CM as CM,
+          lob.LOB_NAME,
+          site.SITE_ID,
+          site.SITE as SITE,
+          site.SAP_CODE,
+          site.LAST_UPDATED_TS as SITE_LATEST_UPDATE_TS,
+          line.AREA,
+          line.LAST_UPDATED_TS as AREA_LATEST_UPDATE_TS,
+          assets.DIVISION
+FROM T_ASSETS as assets
+INNER JOIN T_CM as cm
+  on assets.CM_ID = cm.CM_ID
+  and cm.Z41_SUPPORTED = '0'
+  and assets.ACTIVE = '1'
+  and assets.ASSET_STATE  NOT IN (9, 10)
+  and ( (assets.DIVISION is NULL or assets.DIVISION='') or assets.DIVISION = '0192')
+INNER JOIN T_LOB as lob 
+            on cm.LOB_ID = lob.LOB_ID
+INNER JOIN T_SITE as site 
+on assets.SITE_ID = site.SITE_ID
+LEFT OUTER JOIN T_LINE as line
+on assets.LINE_ID = line.LINE_ID

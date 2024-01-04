@@ -1,0 +1,19 @@
+VIEW "V_NONRFID_PROJ_ROW" AS (
+  SELECT *,
+    Row_Number() over(
+      PARTITION by CM,
+      Site,
+      Program,
+      Station,
+      Aqid,
+      Scope,
+      Uph,
+      Line,
+      Level,
+      Group_Priority,
+      Mfr,
+      Balance_Qty
+      ORDER BY ModifiedAt DESC
+    ) AS rn
+  FROM COM_APPLE_COA_T_COA_NONRFID_PROJECTION
+)

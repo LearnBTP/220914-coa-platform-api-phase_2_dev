@@ -1,0 +1,5 @@
+CM,Site,Program,Sub_Line_Name,Uph,boH_Qty,Working_Hrs,Remote_Site_Cap_Demand,Yield,Version,Date,Upload_By_User,Comment
+HHLH,PBPH,D63,CSA||Strobe flex-HG||2683,900,11,12,3000,0.99,,,,Test-UL3
+HHLH,FXGL,J617,CSA||Strobe flex-HG||2683,800,13,26,2100,0.99,,,,Test-UL3
+HHLH,PBPH,J620,CSA||Strobe flex-HG||2683,700,14,35,2700,0.99,,,,Test-UL3
+HHLH,FXGL,R228,CSA||Strobe flex-HG||2683,1000,6,20,2500,0.99,,,,Test-UL3

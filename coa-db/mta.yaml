@@ -1,0 +1,109 @@
+_schema-version: '3.1'
+ID: coa-db
+description: Carry Over Annotation application.
+version: 1.0.0
+modules:
+  - name: coa-db-ext-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+      keep-existing-routes: true
+      disk-quota: 4096M
+      memory: 6144M
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-ext-api
+        properties:
+          srv-url: '${default-url}'
+    requires:
+      - name: coa-db
+      - name: zcoa_db_ext_uaa
+      - name: coa-destination
+      - name: coa-logs
+      - name: COA-Autoscaler
+        parameters:
+          path: ./autoscaler-ext.json
+  - name: coa-db-deployer
+    type: hdb
+    path: db
+    requires:
+      - name: coa-db
+      - name: UPS_ALDERAAN_TABLES
+      - name: coa-db-srv
+    parameters:
+      buildpack: nodejs_buildpack
+  - name: coa-db-srv
+    type: nodejs
+    path: gen/srv
+    requires:
+      - name: coa-db
+      - name: zcoa_uaa
+      - name: coa-destination
+      - name: coa-logs
+      - name: COA-Autoscaler
+        parameters:
+          path: ./autoscaler.json
+    parameters:
+      buildpack: nodejs_buildpack
+      keep-existing-routes: true
+      disk-quota: 4096M
+      memory: 6144M
+    build-parameters:
+      builder: npm-ci
+resources:
+  - name: coa-logs
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service: Application Logging Service
+      service-plan: large
+  - name: coa-db
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-plan: hdi-shared
+      service: hana
+    properties:
+      hdi-service-name: '${service-name}'
+  - name: zcoa_db_ext_uaa
+    type: org.cloudfoundry.existing-service
+    parameters:
+      path: ./xs-security-ext.json
+      service: xsuaa
+      service-name: zcoa-xsuaa-ext-service
+      service-plan: application
+  - name: coa-destination
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: coa-destination
+  - name: zcoa_uaa
+    type: org.cloudfoundry.existing-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: zcoa-xsuaa-service
+      service-plan: application
+# ----------------- UPS for ALderaan Tables -----------------
+  - name: UPS_ALDERAAN_TABLES
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: UPS_ALDERAAN_TABLES
+
+# ----------------- AUTO SCALER SERVICE -----------------
+  - name: COA-Autoscaler
+# ------------------------------------------------------------
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: autoscaler
+      service-plan: standard
+      service-name: COA-Autoscaler
+      
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx -p @sap/cds-dk cds build --production
+

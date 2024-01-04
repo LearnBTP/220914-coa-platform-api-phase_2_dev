@@ -1,0 +1,50 @@
+{
+  "T_ASSETS": {
+    "target": {
+      "object": "TARGET_ASSETS",
+      "schema": "SDI_HDI_1"
+    }
+  },
+  "T_CM": {
+    "target": {
+      "object": "TARGET_CM",
+      "schema": "SDI_HDI_1"
+    }
+  },
+  "T_SITE": {
+    "target": {
+      "object": "TARGET_SITE",
+      "schema": "SDI_HDI_1"
+    }
+  },
+  "T_LINE": {
+    "target": {
+      "object": "TARGET_LINE",
+      "schema": "SDI_HDI_1"
+    }
+  },
+  "T_LOB": {
+    "target": {
+      "object": "TARGET_LOB",
+      "schema": "SDI_HDI_1"
+    }
+  },
+  "T_COA_AUDIT": {
+    "target": {
+      "object": "TARGET_COA_AUDIT",
+      "schema": "SDI_HDI_1"
+    }
+  },
+  "TABLES": {
+    "target": {
+      "object": "TABLE_COLUMNS",
+      "schema": "SYS"
+    }
+  },
+  "KEY_FIELDS": {
+    "target": {
+      "object": "INDEX_COLUMNS",
+      "schema": "SYS"
+    }
+  }
+}

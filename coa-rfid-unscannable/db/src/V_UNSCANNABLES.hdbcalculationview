@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="V_UNSCANNABLES" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="V_UNSCANNABLES"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="COM_APPLE_COA_T_COA_RFID_UNSCANNABLE_TT">
+    <resourceUri>COM_APPLE_COA_T_COA_RFID_UNSCANNABLE_TT</resourceUri>
+  </DataSource>
+  <DataSource id="V_AQID_DATA">
+    <resourceUri>V_AQID_DATA</resourceUri>
+  </DataSource>
+  <DataSource id="COM_APPLE_COA_T_COA_SYNC_STATUS">
+    <resourceUri>COM_APPLE_COA_T_COA_SYNC_STATUS</resourceUri>
+  </DataSource>
+  <DataSource id="V_BOM_STRUCTURE">
+    <resourceUri>V_BOM_STRUCTURE</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="CREATEDAT"/>
+      <viewAttribute id="CREATEDBY"/>
+      <viewAttribute id="MODIFIEDAT"/>
+      <viewAttribute id="MODIFIEDBY"/>
+      <viewAttribute id="FROM_BUSINESS_GRP"/>
+      <viewAttribute id="SEQUENCE_NO"/>
+      <viewAttribute id="NPI_INDICATOR"/>
+      <viewAttribute id="FLEX_KITS"/>
+      <viewAttribute id="TRANSFER_FLAG"/>
+      <viewAttribute id="TO_GHSITE"/>
+      <viewAttribute id="TO_CM"/>
+      <viewAttribute id="TO_SITE"/>
+      <viewAttribute id="TO_PROGRAM"/>
+      <viewAttribute id="TO_BUSINESS_GRP"/>
+      <viewAttribute id="QTY"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="REVIEW_DATE"/>
+      <viewAttribute id="REVIEWED_BY"/>
+      <viewAttribute id="MODIFIEDBY_NAME"/>
+      <viewAttribute id="MODIFIEDBY_MAIL"/>
+      <viewAttribute id="CREATEDBY_NAME"/>
+      <viewAttribute id="CREATEDBY_MAIL"/>
+      <viewAttribute id="REVIEWED_BY_NAME"/>
+      <viewAttribute id="REVIEWED_BY_MAIL"/>
+      <viewAttribute id="SAP_TO_CM_SITE"/>
+      <viewAttribute id="COMMENT"/>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROJECTED_QTY"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+      <viewAttribute id="EQUIPMENT_NAME"/>
+      <viewAttribute id="PO_TYPE"/>
+      <viewAttribute id="CONSUMABLES"/>
+      <viewAttribute id="MFR"/>
+    
+      <viewAttribute id="MAPPED_AQID"/>
+      <viewAttribute id="TABLE_MAPPED_AQID"/>
+      <viewAttribute id="RESET_FLAG"/>
+      <viewAttribute hidden="true" id="JOIN$CM$CM"/>
+      <viewAttribute hidden="true" id="JOIN$SITE$SITE"/>
+      <viewAttribute hidden="true" id="JOIN$AQID$AQID"/>
+      <viewAttribute hidden="true" id="JOIN$PROGRAM$PROGRAM"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="COM_APPLE_COA_T_COA_RFID_UNSCANNABLE_TT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDAT" source="CREATEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDBY" source="CREATEDBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDAT" source="MODIFIEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDBY" source="MODIFIEDBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FROM_BUSINESS_GRP" source="FROM_BUSINESS_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SEQUENCE_NO" source="SEQUENCE_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FLEX_KITS" source="FLEX_KITS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TRANSFER_FLAG" source="TRANSFER_FLAG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_GHSITE" source="TO_GHSITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_CM" source="TO_CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_SITE" source="TO_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_PROGRAM" source="TO_PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_BUSINESS_GRP" source="TO_BUSINESS_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QTY" source="QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REVIEW_DATE" source="REVIEW_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REVIEWED_BY" source="REVIEWED_BY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDBY_NAME" source="MODIFIEDBY_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDBY_MAIL" source="MODIFIEDBY_MAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDBY_NAME" source="CREATEDBY_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDBY_MAIL" source="CREATEDBY_MAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REVIEWED_BY_NAME" source="REVIEWED_BY_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REVIEWED_BY_MAIL" source="REVIEWED_BY_MAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_TO_CM_SITE" source="SAP_TO_CM_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMMENT" source="COMMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROJECTED_QTY" source="PROJECTED_QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CM_SITE"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="NPI_INDICATOR" source="NPI_INDICATOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TABLE_MAPPED_AQID" source="MAPPED_AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RESET_FLAG" source="RESET_FLAG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AQID$AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+    </input>
+    <input node="V_AQID_DATA">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIPMENT_NAME" source="EQUIPMENT_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_TYPE" source="PO_TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONSUMABLES" source="CONSUMABLES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MFR" source="MFR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAPPED_AQID" source="Mapped_AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AQID$AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+    </input>
+    <joinAttribute name="JOIN$CM$CM"/>
+    <joinAttribute name="JOIN$SITE$SITE"/>
+    <joinAttribute name="JOIN$AQID$AQID"/>
+    <joinAttribute name="JOIN$PROGRAM$PROGRAM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="APP"/>
+      <viewAttribute id="SYNC_STATUS"/>
+      <viewAttribute id="ERROR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="COM_APPLE_COA_T_COA_SYNC_STATUS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SYNC_STATUS" source="STATUS"/>
+    </input>
+    <filter>&quot;APP&quot; = 'Unscannable'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="CREATEDAT"/>
+      <viewAttribute id="CREATEDBY"/>
+      <viewAttribute id="MODIFIEDAT"/>
+      <viewAttribute id="MODIFIEDBY"/>
+      <viewAttribute id="FROM_BUSINESS_GRP"/>
+      <viewAttribute id="SEQUENCE_NO"/>
+      <viewAttribute id="NPI_INDICATOR"/>
+      <viewAttribute id="FLEX_KITS"/>
+      <viewAttribute id="TRANSFER_FLAG"/>
+      <viewAttribute id="TO_GHSITE"/>
+      <viewAttribute id="TO_CM"/>
+      <viewAttribute id="TO_SITE"/>
+      <viewAttribute id="TO_PROGRAM"/>
+      <viewAttribute id="TO_BUSINESS_GRP"/>
+      <viewAttribute id="QTY"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="REVIEW_DATE"/>
+      <viewAttribute id="REVIEWED_BY"/>
+      <viewAttribute id="MODIFIEDBY_NAME"/>
+      <viewAttribute id="MODIFIEDBY_MAIL"/>
+      <viewAttribute id="CREATEDBY_NAME"/>
+      <viewAttribute id="CREATEDBY_MAIL"/>
+      <viewAttribute id="REVIEWED_BY_NAME"/>
+      <viewAttribute id="REVIEWED_BY_MAIL"/>
+      <viewAttribute id="SAP_TO_CM_SITE"/>
+      <viewAttribute id="COMMENT"/>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROJECTED_QTY"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+      <viewAttribute id="EQUIPMENT_NAME"/>
+      <viewAttribute id="PO_TYPE"/>
+      <viewAttribute id="CONSUMABLES"/>
+      <viewAttribute id="MFR"/>
+      <viewAttribute id="SCOPE"/>
+    
+      <viewAttribute id="MAPPED_AQID"/>
+      <viewAttribute id="TABLE_MAPPED_AQID"/>
+      <viewAttribute id="RESET_FLAG"/>
+      <viewAttribute hidden="true" id="JOIN$CM$CM"/>
+      <viewAttribute hidden="true" id="JOIN$SITE$SITE"/>
+      <viewAttribute hidden="true" id="JOIN$PROGRAM$PROGRAM"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDAT" source="CREATEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDBY" source="CREATEDBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDAT" source="MODIFIEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDBY" source="MODIFIEDBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FROM_BUSINESS_GRP" source="FROM_BUSINESS_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SEQUENCE_NO" source="SEQUENCE_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FLEX_KITS" source="FLEX_KITS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TRANSFER_FLAG" source="TRANSFER_FLAG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_GHSITE" source="TO_GHSITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_CM" source="TO_CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_SITE" source="TO_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_PROGRAM" source="TO_PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_BUSINESS_GRP" source="TO_BUSINESS_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QTY" source="QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REVIEW_DATE" source="REVIEW_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REVIEWED_BY" source="REVIEWED_BY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDBY_NAME" source="MODIFIEDBY_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDBY_MAIL" source="MODIFIEDBY_MAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDBY_NAME" source="CREATEDBY_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDBY_MAIL" source="CREATEDBY_MAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REVIEWED_BY_NAME" source="REVIEWED_BY_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REVIEWED_BY_MAIL" source="REVIEWED_BY_MAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_TO_CM_SITE" source="SAP_TO_CM_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMMENT" source="COMMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROJECTED_QTY" source="PROJECTED_QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CM_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIPMENT_NAME" source="EQUIPMENT_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_TYPE" source="PO_TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONSUMABLES" source="CONSUMABLES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MFR" source="MFR"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="NPI_INDICATOR" source="NPI_INDICATOR"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAPPED_AQID" source="MAPPED_AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TABLE_MAPPED_AQID" source="TABLE_MAPPED_AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RESET_FLAG" source="RESET_FLAG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+    </input>
+    <input node="V_BOM_STRUCTURE">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SCOPE" source="SCOPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CM$CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SITE$SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PROGRAM$PROGRAM" source="PROGRAM"/>
+    </input>
+    <joinAttribute name="JOIN$CM$CM"/>
+    <joinAttribute name="JOIN$SITE$SITE"/>
+    <joinAttribute name="JOIN$PROGRAM$PROGRAM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="CREATEDAT"/>
+      <viewAttribute id="CREATEDBY"/>
+      <viewAttribute id="MODIFIEDAT"/>
+      <viewAttribute id="MODIFIEDBY"/>
+      <viewAttribute id="FROM_BUSINESS_GRP"/>
+      <viewAttribute id="SEQUENCE_NO"/>
+      <viewAttribute id="NPI_INDICATOR"/>
+      <viewAttribute id="FLEX_KITS"/>
+      <viewAttribute id="TRANSFER_FLAG"/>
+      <viewAttribute id="TO_GHSITE"/>
+      <viewAttribute id="TO_CM"/>
+      <viewAttribute id="TO_SITE"/>
+      <viewAttribute id="TO_PROGRAM"/>
+      <viewAttribute id="TO_BUSINESS_GRP"/>
+      <viewAttribute id="QTY"/>
+      <viewAttribute id="STATUS"/>
+      <viewAttribute id="REVIEW_DATE"/>
+      <viewAttribute id="REVIEWED_BY"/>
+      <viewAttribute id="MODIFIEDBY_NAME"/>
+      <viewAttribute id="MODIFIEDBY_MAIL"/>
+      <viewAttribute id="CREATEDBY_NAME"/>
+      <viewAttribute id="CREATEDBY_MAIL"/>
+      <viewAttribute id="REVIEWED_BY_NAME"/>
+      <viewAttribute id="REVIEWED_BY_MAIL"/>
+      <viewAttribute id="SAP_TO_CM_SITE"/>
+      <viewAttribute id="COMMENT"/>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="CM"/>
+      <viewAttribute id="SITE"/>
+      <viewAttribute id="PROGRAM"/>
+      <viewAttribute id="AQID"/>
+      <viewAttribute id="GH_SITE"/>
+      <viewAttribute id="PROJECTED_QTY"/>
+      <viewAttribute id="SAP_CM_SITE"/>
+      <viewAttribute id="EQUIPMENT_NAME"/>
+      <viewAttribute id="PO_TYPE"/>
+      <viewAttribute id="CONSUMABLES"/>
+      <viewAttribute id="MFR"/>
+      <viewAttribute id="SCOPE"/>
+      <viewAttribute id="MAPPED_AQID"/>
+      <viewAttribute id="SYNC_STATUS"/>
+      <viewAttribute id="ERROR"/>
+      <viewAttribute id="TABLE_MAPPED_AQID"/>
+      <viewAttribute id="RESET_FLAG"/>
+      <viewAttribute hidden="true" id="JOIN$GH_SITE$GH_SITE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDAT" source="CREATEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDBY" source="CREATEDBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDAT" source="MODIFIEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDBY" source="MODIFIEDBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FROM_BUSINESS_GRP" source="FROM_BUSINESS_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SEQUENCE_NO" source="SEQUENCE_NO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NPI_INDICATOR" source="NPI_INDICATOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FLEX_KITS" source="FLEX_KITS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TRANSFER_FLAG" source="TRANSFER_FLAG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_GHSITE" source="TO_GHSITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_CM" source="TO_CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_SITE" source="TO_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_PROGRAM" source="TO_PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TO_BUSINESS_GRP" source="TO_BUSINESS_GRP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QTY" source="QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REVIEW_DATE" source="REVIEW_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REVIEWED_BY" source="REVIEWED_BY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDBY_NAME" source="MODIFIEDBY_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDBY_MAIL" source="MODIFIEDBY_MAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDBY_NAME" source="CREATEDBY_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDBY_MAIL" source="CREATEDBY_MAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REVIEWED_BY_NAME" source="REVIEWED_BY_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REVIEWED_BY_MAIL" source="REVIEWED_BY_MAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_TO_CM_SITE" source="SAP_TO_CM_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMMENT" source="COMMENT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CM" source="CM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SITE" source="SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROGRAM" source="PROGRAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AQID" source="AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GH_SITE" source="GH_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PROJECTED_QTY" source="PROJECTED_QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SAP_CM_SITE" source="SAP_CM_SITE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EQUIPMENT_NAME" source="EQUIPMENT_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PO_TYPE" source="PO_TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONSUMABLES" source="CONSUMABLES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MFR" source="MFR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SCOPE" source="SCOPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAPPED_AQID" source="MAPPED_AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TABLE_MAPPED_AQID" source="TABLE_MAPPED_AQID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RESET_FLAG" source="RESET_FLAG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$GH_SITE$GH_SITE" source="GH_SITE"/>
+    </input>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SYNC_STATUS" source="SYNC_STATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ERROR" source="ERROR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$GH_SITE$GH_SITE" source="GH_SITE"/>
+    </input>
+    <joinAttribute name="JOIN$GH_SITE$GH_SITE"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_3">
+  <attributes>
+    <attribute id="CREATEDAT" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATEDAT"/>
+      <keyMapping columnObjectName="Join_3" columnName="CREATEDAT"/>
+    </attribute>
+    <attribute id="CREATEDBY" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATEDBY"/>
+      <keyMapping columnObjectName="Join_3" columnName="CREATEDBY"/>
+    </attribute>
+    <attribute id="MODIFIEDAT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MODIFIEDAT"/>
+      <keyMapping columnObjectName="Join_3" columnName="MODIFIEDAT"/>
+    </attribute>
+    <attribute id="MODIFIEDBY" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MODIFIEDBY"/>
+      <keyMapping columnObjectName="Join_3" columnName="MODIFIEDBY"/>
+    </attribute>
+    <attribute id="FROM_BUSINESS_GRP" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FROM_BUSINESS_GRP"/>
+      <keyMapping columnObjectName="Join_3" columnName="FROM_BUSINESS_GRP"/>
+    </attribute>
+    <attribute id="SEQUENCE_NO" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SEQUENCE_NO"/>
+      <keyMapping columnObjectName="Join_3" columnName="SEQUENCE_NO"/>
+    </attribute>
+    <attribute id="NPI_INDICATOR" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NPI_INDICATOR"/>
+      <keyMapping columnObjectName="Join_3" columnName="NPI_INDICATOR"/>
+    </attribute>
+    <attribute id="FLEX_KITS" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FLEX_KITS"/>
+      <keyMapping columnObjectName="Join_3" columnName="FLEX_KITS"/>
+    </attribute>
+    <attribute id="TRANSFER_FLAG" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TRANSFER_FLAG"/>
+      <keyMapping columnObjectName="Join_3" columnName="TRANSFER_FLAG"/>
+    </attribute>
+    <attribute id="TO_GHSITE" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TO_GHSITE"/>
+      <keyMapping columnObjectName="Join_3" columnName="TO_GHSITE"/>
+    </attribute>
+    <attribute id="TO_CM" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TO_CM"/>
+      <keyMapping columnObjectName="Join_3" columnName="TO_CM"/>
+    </attribute>
+    <attribute id="TO_SITE" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TO_SITE"/>
+      <keyMapping columnObjectName="Join_3" columnName="TO_SITE"/>
+    </attribute>
+    <attribute id="TO_PROGRAM" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TO_PROGRAM"/>
+      <keyMapping columnObjectName="Join_3" columnName="TO_PROGRAM"/>
+    </attribute>
+    <attribute id="TO_BUSINESS_GRP" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TO_BUSINESS_GRP"/>
+      <keyMapping columnObjectName="Join_3" columnName="TO_BUSINESS_GRP"/>
+    </attribute>
+    <attribute id="QTY" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QTY"/>
+      <keyMapping columnObjectName="Join_3" columnName="QTY"/>
+    </attribute>
+    <attribute id="STATUS" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATUS"/>
+      <keyMapping columnObjectName="Join_3" columnName="STATUS"/>
+    </attribute>
+    <attribute id="REVIEW_DATE" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REVIEW_DATE"/>
+      <keyMapping columnObjectName="Join_3" columnName="REVIEW_DATE"/>
+    </attribute>
+    <attribute id="REVIEWED_BY" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REVIEWED_BY"/>
+      <keyMapping columnObjectName="Join_3" columnName="REVIEWED_BY"/>
+    </attribute>
+    <attribute id="MODIFIEDBY_NAME" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MODIFIEDBY_NAME"/>
+      <keyMapping columnObjectName="Join_3" columnName="MODIFIEDBY_NAME"/>
+    </attribute>
+    <attribute id="MODIFIEDBY_MAIL" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MODIFIEDBY_MAIL"/>
+      <keyMapping columnObjectName="Join_3" columnName="MODIFIEDBY_MAIL"/>
+    </attribute>
+    <attribute id="CREATEDBY_NAME" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATEDBY_NAME"/>
+      <keyMapping columnObjectName="Join_3" columnName="CREATEDBY_NAME"/>
+    </attribute>
+    <attribute id="CREATEDBY_MAIL" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATEDBY_MAIL"/>
+      <keyMapping columnObjectName="Join_3" columnName="CREATEDBY_MAIL"/>
+    </attribute>
+    <attribute id="REVIEWED_BY_NAME" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REVIEWED_BY_NAME"/>
+      <keyMapping columnObjectName="Join_3" columnName="REVIEWED_BY_NAME"/>
+    </attribute>
+    <attribute id="REVIEWED_BY_MAIL" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REVIEWED_BY_MAIL"/>
+      <keyMapping columnObjectName="Join_3" columnName="REVIEWED_BY_MAIL"/>
+    </attribute>
+    <attribute id="SAP_TO_CM_SITE" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SAP_TO_CM_SITE"/>
+      <keyMapping columnObjectName="Join_3" columnName="SAP_TO_CM_SITE"/>
+    </attribute>
+    <attribute id="COMMENT" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMMENT"/>
+      <keyMapping columnObjectName="Join_3" columnName="COMMENT"/>
+    </attribute>
+    <attribute id="ID" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Join_3" columnName="ID"/>
+    </attribute>
+    <attribute id="CM" order="28" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CM"/>
+      <keyMapping columnObjectName="Join_3" columnName="CM"/>
+    </attribute>
+    <attribute id="SITE" order="29" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SITE"/>
+      <keyMapping columnObjectName="Join_3" columnName="SITE"/>
+    </attribute>
+    <attribute id="PROGRAM" order="30" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PROGRAM"/>
+      <keyMapping columnObjectName="Join_3" columnName="PROGRAM"/>
+    </attribute>
+    <attribute id="AQID" order="31" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AQID"/>
+      <keyMapping columnObjectName="Join_3" columnName="AQID"/>
+    </attribute>
+    <attribute id="GH_SITE" order="32" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GH_SITE"/>
+      <keyMapping columnObjectName="Join_3" columnName="GH_SITE"/>
+    </attribute>
+    <attribute id="PROJECTED_QTY" order="33" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PROJECTED_QTY"/>
+      <keyMapping columnObjectName="Join_3" columnName="PROJECTED_QTY"/>
+    </attribute>
+    <attribute id="SAP_CM_SITE" order="34" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SAP_CM_SITE"/>
+      <keyMapping columnObjectName="Join_3" columnName="SAP_CM_SITE"/>
+    </attribute>
+    <attribute id="EQUIPMENT_NAME" order="35" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EQUIPMENT_NAME"/>
+      <keyMapping columnObjectName="Join_3" columnName="EQUIPMENT_NAME"/>
+    </attribute>
+    <attribute id="PO_TYPE" order="36" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO_TYPE"/>
+      <keyMapping columnObjectName="Join_3" columnName="PO_TYPE"/>
+    </attribute>
+    <attribute id="CONSUMABLES" order="37" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CONSUMABLES"/>
+      <keyMapping columnObjectName="Join_3" columnName="CONSUMABLES"/>
+    </attribute>
+    <attribute id="MFR" order="38" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MFR"/>
+      <keyMapping columnObjectName="Join_3" columnName="MFR"/>
+    </attribute>
+    <attribute id="SCOPE" order="39" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SCOPE"/>
+      <keyMapping columnObjectName="Join_3" columnName="SCOPE"/>
+    </attribute>
+    <attribute id="MAPPED_AQID" order="40" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MAPPED_AQID"/>
+      <keyMapping columnObjectName="Join_3" columnName="MAPPED_AQID"/>
+    </attribute>
+    <attribute id="SYNC_STATUS" order="41" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Sync Status"/>
+      <keyMapping columnObjectName="Join_3" columnName="SYNC_STATUS"/>
+    </attribute>
+    <attribute id="ERROR" order="42" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Validation Error"/>
+      <keyMapping columnObjectName="Join_3" columnName="ERROR"/>
+    </attribute>
+  
+    <attribute id="TABLE_MAPPED_AQID" order="43" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MAPPED_AQID_1"/>
+  
+      <keyMapping columnObjectName="Join_3" columnName="TABLE_MAPPED_AQID"/>
+  
+    </attribute>
+  
+    <attribute id="RESET_FLAG" order="44" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RESET_FLAG"/>
+      <keyMapping columnObjectName="Join_3" columnName="RESET_FLAG"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-94" y="434"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="COM_APPLE_COA_T_COA_RFID_UNSCANNABLE_TT" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="374"/>
+    </shape>
+    <shape modelObjectName="V_AQID_DATA" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="471" y="229"/>
+      <rectangleSize width="189"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="319" y="293"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-95" y="293"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="V_BOM_STRUCTURE" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="187"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="105" y="192"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="210"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

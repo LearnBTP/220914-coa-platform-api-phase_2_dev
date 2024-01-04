@@ -1,0 +1,86 @@
+VIEW "V_NONRFID_TT" AS (
+  SELECT DISTINCT T_COA_NONRFID_TT.ID,
+    T_COA_NONRFID_TT.GH_Site,
+    T_COA_NONRFID_TT.CM,
+    T_COA_NONRFID_TT.Site,
+    T_COA_NONRFID_TT.Program,
+    T_COA_NONRFID_TT.Line_Type,
+    T_COA_NONRFID_TT.Uph,
+    T_COA_NONRFID_TT.Aqid,
+    T_COA_NONRFID_TT.Station,
+    T_COA_NONRFID_TT.Scope,
+    T_COA_NONRFID_TT.Line_Id,
+    T_COA_NONRFID_TT.Parent_Item,
+    T_COA_NONRFID_TT.Alt_Station,
+    T_COA_NONRFID_TT.Group_Priority,
+    SUBSTR_BEFORE(T_COA_NONRFID_TT.Group_Priority, '-') AS Grp,
+    SUBSTR_AFTER(T_COA_NONRFID_TT.Group_Priority, '-') AS Prio,
+    T_COA_NONRFID_TT.Sequence_No,
+    T_COA_NONRFID_TT.Equipment_Name,
+    T_COA_NONRFID_TT.confLevel,
+    T_COA_NONRFID_TT.Projected_Qty,
+    T_COA_NONRFID_TT.Transfer_Qty,
+    T_COA_NONRFID_TT.Override_Qty,
+    T_COA_NONRFID_TT.Mfr,
+    T_COA_NONRFID_TT.BusinessGrp,
+    T_COA_NONRFID_TT.SAP_CM_Site,
+    T_COA_NONRFID_TT.SAP_To_CM_Site,
+    T_COA_NONRFID_TT.Dept,
+    T_COA_NONRFID_TT.RFID_Scope,
+    T_COA_NONRFID_TT.Group_ID,
+    T_COA_NONRFID_TT.Split,
+    T_COA_NONRFID_TT.Line_Priority,
+    T_COA_NONRFID_TT.Equipment_Type,
+    T_COA_NONRFID_TT.To_CM,
+    T_COA_NONRFID_TT.To_Site,
+    T_COA_NONRFID_TT.To_Program,
+    T_COA_NONRFID_TT.To_Business_Grp,
+    T_COA_NONRFID_TT.To_GHSite,
+    T_COA_NONRFID_TT.Transfer_Flag,
+    T_COA_NONRFID_TT.Comments,
+    T_COA_NONRFID_TT.Status,
+    T_COA_SYNC_STATUS.createdAt as LastSyncDate,
+    T_COA_SYNC_STATUS.createdBy_Name as LastSyncBy,
+    T_COA_SYNC_STATUS.Status as LastSyncStatus,
+    T_COA_NONRFID_TT.Submit_Date,
+    T_COA_NONRFID_TT.Submit_By,
+    T_COA_NONRFID_TT.Review_Date,
+    T_COA_NONRFID_TT.Reviewed_By,
+    T_COA_NONRFID_TT.modifiedBy_Name,
+    T_COA_NONRFID_TT.modifiedBy_mail,
+    T_COA_NONRFID_TT.createdBy_Name,
+    T_COA_NONRFID_TT.createdBy_mail,
+    T_COA_NONRFID_TT.Submit_By_Name,
+    T_COA_NONRFID_TT.Submit_By_mail,
+    T_COA_NONRFID_TT.Reviewed_By_Name,
+    T_COA_NONRFID_TT.Reviewed_By_mail,
+    CASE
+      WHEN (
+        T_COA_AQID_MAPPING.Cm_Recommendation = ''
+        OR T_COA_AQID_MAPPING.Cm_Recommendation IS NULL
+      ) THEN T_COA_AQID_MAPPING.Mapped_Aqid
+      ELSE T_COA_AQID_MAPPING.Cm_Recommendation
+    END AS Mapped_Aqid,
+    T_COA_NONRFID_TT.Mapped_Aqid as Table_Mapped_Aqid,
+    T_COA_NONRFID_TT.Reset_Flag as Reset_Flag,
+    T_COA_NONRFID_TT.createdBy,
+    T_COA_NONRFID_TT.createdAt,
+    T_COA_NONRFID_TT.modifiedBy,
+    T_COA_NONRFID_TT.modifiedAt,
+    T_COA_NONRFID_TT.Error 
+  FROM "COM_APPLE_COA_T_COA_NONRFID_TT" AS T_COA_NONRFID_TT
+    LEFT OUTER JOIN "COM_APPLE_COA_T_COA_SYNC_STATUS" AS T_COA_SYNC_STATUS
+ ON T_COA_SYNC_STATUS.App = 'NonRfidTT'
+    AND T_COA_SYNC_STATUS.GH_Site = T_COA_NONRFID_TT.GH_Site
+    AND T_COA_SYNC_STATUS.Program = T_COA_NONRFID_TT.Program
+    LEFT OUTER JOIN "V_NONRFID_AQIDMAP"
+ AS T_COA_AQID_MAPPING
+ ON T_COA_NONRFID_TT.Aqid = T_COA_AQID_MAPPING.Raw_Aqid
+    AND T_COA_NONRFID_TT.Program = T_COA_AQID_MAPPING.Program
+    AND T_COA_NONRFID_TT.GH_Site = T_COA_AQID_MAPPING.GH_Site
+    AND T_COA_NONRFID_TT.Site = T_COA_AQID_MAPPING.Site
+    AND T_COA_NONRFID_TT.CM = T_COA_AQID_MAPPING.CM
+    AND T_COA_AQID_MAPPING.rn = 1
+    
+)
+

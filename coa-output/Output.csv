@@ -1,0 +1,4 @@
+From_GHSite,From_Product,AQID,To_GHSite,To_Product,From_Business_Grp,To_Business_Grp,Quantity,CM_Balance_Qty,Comment
+LXKS,D17,57366-01,LXKS,D17,,,1,1,Upload test
+LXKS,D62,57366-01,FXZZ,D63,,,1,0,Upload test
+FXZZ,Prd2,57366-01,FXZZ,Prd4,,,1,2,Upload test
